@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESE 124 C Programming Fundamentals</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+        header { display: flex; align-items: center; background: #eee; padding: 16px 24px; border-bottom: 2px solid #00468b; }
+        .header-title { font-size: 1.5em; color: #00468b; font-weight: bold; margin: 0 auto; }
+        nav { background: #00468b; color: #fff; padding: 10px; position: sticky; top: 0; }
+        nav a { color: #fff; margin: 0 10px; text-decoration: none; }
+        section { padding: 20px; border-bottom: 1px solid #ccc; }
+        h2 { color: #00468b; margin-top: 0; }
+        pre { background: #f4f4f4; padding: 10px; overflow-x: auto; }
+        details { margin: 10px 0; }
+        summary { cursor: pointer; font-weight: bold; }
+        .error-list, .exercise-list, .adt-explanation { margin: 10px 0 10px 20px; }
+    </style>
+</head>
+<body>
+    <header>
+        <span class="header-title">ESE 124 C Programming Fundamentals</span>
+    </header>
+
+    <nav>
+      <a href="#basic">Basic</a>
+        <a href="#datatypes">Data Types</a>
+        <a href="#control">Control</a>
+        <a href="#arrays">Arrays</a>
+        <a href="#functions">Functions</a>
+        <a href="#pointers">Pointers</a>
+        <a href="#fileio">File I/O</a>
+        <a href="#algorithms">Algorithms</a>
+        <a href="#datastruct">Data Structures</a>
+        <a href="#fsm">FSM</a>
+        <a href="#memory">Dynamic Memory</a>
+        <a href="#structs">Structures</a>
+        <a href="#bitwise">Bitwise Manipulation</a>
+        <a href="#funcptr">Function Pointers</a>
+        <a href="#exams">Exams</a>
+    </nav>
+
+    <section id="basic">
+        <h2>Basic Setup</h2>
+        <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hello ESE 124!\n");
+    return 0;
+}</code></pre>
+        <div class="error-list">
+            <strong>Common Errors:</strong>
+            <ul>
+                <li>Missing <code>#include &lt;stdio.h&gt;</code></li>
+                <li>Typo in <code>main</code> or missing <code>return 0;</code></li>
+            </ul>
+        </div>
+        <div class="exercise-list">
+            <strong>Exercise:</strong> Modify the program to ask for the user's name and print "Hello, &lt;name&gt;!".  
+            <details>
+                <summary>Solution</summary>
+                <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    char name[50];
+    printf("Enter your name: ");
+    scanf("%49s", name);
+    printf("Hello, %s!\n", name);
+    return 0;
+}</code></pre>
+            </details>
+        </div>
+    </section>
+
+    <section id="datatypes">
+        <h2>Data Types & ASCII</h2>
+        <pre><code>int age;
+float temp;
+char letter;
+printf("ASCII of A is %d\n", 'A');</code></pre>
+        <div class="error-list">
+            <strong>Common Errors:</strong>
+            <ul>
+                <li>Using wrong specifier: <code>%f</code> vs <code>%d</code>.</li>
+                <li>Buffer overflow when reading <code>char name[]</code>.</li>
+            </ul>
+        </div>
+        <div class="exercise-list">
+            <strong>Exercise:</strong> Print ASCII values of characters '0' through '9'.  
+            <details>
+                <summary>Solution</summary>
+                <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    for (char c = '0'; c <= '9'; c++) {
+        printf("%c = %d\n", c, c);
+    }
+    return 0;
+}</code></pre>
+            </details>
+        </div>
+    </section>
+
+    <section id="control">
+        <h2>Control Statements</h2>
+        <pre><code>int x;
+printf("Enter a number: ");
+scanf("%d", &x);
+
+if (x % 2 == 0) {
+    printf("Even\n");
+} else {
+    printf("Odd\n");
+}</code></pre>
+        <div class="error-list">
+            <strong>Common Errors:</strong>
+            <ul>
+                <li>Missing braces <code>{ }</code> for multi-line blocks.</li>
+                <li>Using <code>=</code> instead of <code>==</code> in conditions.</li>
+            </ul>
+        </div>
+        <div class="exercise-list">
+            <strong>Exercise:</strong> Create a <code>switch</code>-<code>case</code> to print the day of the week for 1–7.  
+            <details>
+                <summary>Solution</summary>
+                <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int d;
+    scanf("%d", &d);
+    switch (d) {
+        case 1: printf("Monday\n"); break;
+        case 2: printf("Tuesday\n"); break;
+        case 3: printf("Wednesday\n"); break;
+        case 4: printf("Thursday\n"); break;
+        case 5: printf("Friday\n"); break;
+        case 6: printf("Saturday\n"); break;
+        case 7: printf("Sunday\n"); break;
+        default: printf("Invalid\n");
+    }
+    return 0;
+}</code></pre>
+            </details>
+        </div>
+    </section>
+
+    <section id="arrays">
+        <h2>Arrays</h2>
+        <pre><code>int nums[5] = {1, 2, 3, 4, 5};
+for (int i = 0; i < 5; i++) {
+    printf("%d ", nums[i]);
+}
+printf("\n");</code></pre>
+        <div class="error-list">
+            <strong>Common Errors:</strong>
+            <ul>
+                <li>Index out of range (e.g., <code>i <= 5</code>).</li>
+            </ul>
+        </div>
+        <div class="exercise-list">
+            <strong>Exercise:</strong> Write a function to find the maximum value in an array.  
+            <details>
+                <summary>Solution</summary>
+                <pre><code>int find_max(int a[], int n) {
+    int mx = a[0];
+    for (int i = 1; i < n; i++) {
+        if (a[i] > mx) mx = a[i];
+    }
+    return mx;
+}
+
+int main() {
+    int arr[] = {3, 7, 2, 9, 5};
+    printf("Max = %d\n", find_max(arr, 5));
+    return 0;
+}</code></pre>
+            </details>
+        </div>
+    </section>
+
+    <section id="functions">
+        <h2>Functions</h2>
+        <pre><code>int add(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    printf("Sum = %d\n", add(2, 3));
+    return 0;
+}</code></pre>
+        <div class="error-list">
+            <strong>Common Errors:</strong>
+            <ul>
+                <li>Missing prototype if function defined after <code>main</code>.</li>
+            </ul>
+        </div>
+        <div class="exercise-list">
+            <strong>Exercise:</strong> Implement a recursive function to compute <code>factorial(n)</code>.  
+            <details>
+                <summary>Solution</summary>
+                <pre><code>long factorial(int n) {
+    if (n <= 1) return 1;
+    return n * factorial(n - 1);
+}
+
+int main() {
+    printf("5! = %ld\n", factorial(5));
+    return 0;
+}</code></pre>
+            </details>
+        </div>
+    </section>
+
+    <section id="pointers">
+        <h2>Pointers</h2>
+        <pre><code>int x = 10;
+int *p = &x;
+printf("Value = %d\n", *p);</code></pre>
+        <div class="error-list">
+            <strong>Common Errors:</strong>
+            <ul>
+                <li>Dereferencing a NULL or uninitialized pointer.</li>
+            </ul>
+        </div>
+        <div class="exercise-list">
+            <strong>Exercise:</strong> Write a function to swap two integers via pointers.  
+            <details>
+                <summary>Solution</summary>
+                <pre><code>swap(int *a, int *b) {
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
+int main() {
+    int a = 5, b = 7;
+    swap(&a, &b);
+    printf("a=%d, b=%d\n", a, b);
+    return 0;
+}</code></pre>
+            </details>
+        </div>
+    </section>
+
+    <section id="funcptr">
+        <h2>Function Pointers</h2>
+        <pre><code>#include &lt;stdio.h&gt;
+
+int add(int a, int b) { return a + b; }
+int sub(int a, int b) { return a - b; }
+
+int main() {
+    int (*op)(int, int);
+    op = &add;
+    printf("5 + 3 = %d\n", op(5, 3));
+    op = &sub;
+    printf("5 - 3 = %d\n", op(5, 3));
+    return 0;
+}</code></pre>
+        <div class="error-list">
+            <strong>Common Errors:</strong>
+            <ul>
+                <li>Mismatched signature for function pointers</li>
+                <li>Omitting parentheses in calls: <code>op(...)</code></li>
+            </ul>
+        </div>
+        <div class="exercise-list">
+            <strong>Exercise:</strong> Write <code>mul</code> and <code>divide</code>, select via an array of pointers.<br>
+            <details>
+                <summary>Solution</summary>
+                <pre><code>#include &lt;stdio.h&gt;
+
+int mul(int a, int b) { return a * b; }
+int divide(int a, int b) { return a / b; }
+
+int main() {
+    int (*ops[2])(int, int) = { &mul, &divide };
+    printf("6 * 7 = %d\n", ops[0](6, 7));
+    printf("6 / 2 = %d\n", ops[1](6, 2));
+    return 0;
+}</code></pre>
+            </details>
+        </div>
+    </section>
+
+    <section id="fileio">
+        <h2>File I/O</h2>
+        <pre><code>FILE *f = fopen("data.txt", "w");
+fprintf(f, "Hello File\n");
+fclose(f);</code></pre>
+        <div class="error-list">
+            <strong>Common Errors:</strong>
+            <ul>
+                <li>Not checking <code>fopen</code> return for NULL.</li>
+            </ul>
+        </div>
+        <div class="exercise-list">
+            <strong>Exercise:</strong> Read integers from <code>input.txt</code> until EOF and print their sum.  
+            <details>
+                <summary>Solution</summary>
+                <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    FILE *f = fopen("input.txt","r");
+    if (!f) return 1;
+    int sum=0, x;
+    while (fscanf(f,"%d",&x)==1) sum += x;
+    fclose(f);
+    printf("Sum = %d\n", sum);
+    return 0;
+}</code></pre>
+            </details>
+        </div>
+    </section>
+
+    <section id="algorithms">
+        <h2>Bubble Sort</h2>
+        <pre><code>bubble(int a[], int n) {
+    for (int i = 0; i < n - 1; i++)
+        for (int j = 0; j < n - i - 1; j++)
+            if (a[j] > a[j + 1]) {
+                int tmp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = tmp;
+            }
+}</code></pre>
+        <div class="error-list">
+            <strong>Common Errors:</strong>
+            <ul><li>Loop bounds off by one.</li></ul>
+        </div>
+        <div class="exercise-list">
+            <strong>Exercise:</strong> Implement insertion sort.  
+            <details>
+                <summary>Solution</summary>
+                <pre><code>insertion(int a[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = a[i], j = i - 1;
+        while (j >= 0 && a[j] > key) {
+            a[j + 1] = a[j];
+            j--;
+        }
+        a[j + 1] = key;
+    }
+}</code></pre>
+            </details>
+        </div>
+    </section>
+
+    <section id="datastruct">
+        <h2>Data Structures</h2>
+
+        <h3>Stack</h3>
+        <pre><code>#define MAX 10
+int stack[MAX], top=-1;
+
+push(int v) { stack[++top]=v; }
+pop()    { return stack[top--]; }</code></pre>
+        <div class="error-list">
+            <strong>Common Errors:</strong>
+            <ul><li>Stack overflow/underflow.</li></ul>
+        </div>
+
+        <h3>Queue</h3>
+        <pre><code>#define MAXQ 10
+int queue[MAXQ], front=0, rear=-1, count=0;
+
+enqueue(int v) {
+    if (count<MAXQ) {
+        rear=(rear+1)%MAXQ;
+        queue[rear]=v; count++;
+    }
+}
+dequeue() {
+    int v=-1;
+    if (count>0) {
+        v=queue[front];
+        front=(front+1)%MAXQ;
+        count--;
+    }
+    return v;
+}</code></pre>
+        <div class="adt-explanation">
+            <strong>ADT:</strong> separates interface from implementation so users call <code>push</code>, <code>pop</code>, <code>enqueue</code>, <code>dequeue</code> without seeing internals.
+        </div>
+        <div class="exercise-list">
+            <strong>Exercise:</strong> Using the Queue ADT, enqueue [1,2,3,4,5] then dequeue all and print.  
+            <details>
+                <summary>Solution</summary>
+                <pre><code>#include &lt;stdio.h&gt>
+#include "queue.h"
+
+int main() {
+    Queue *q = queue_create(5);
+    for (int i=1; i<=5; i++) enqueue(q,i);
+    for (int i=0; i<5; i++)
+        printf("%d ", dequeue(q));
+    printf("\n");
+    queue_destroy(q);
+    return 0;
+}</code></pre>
+            </details>
+        </div>
+        <div class="exercise-list">
+            <strong>Compile:</strong> <code>gcc main.c queue.c -o a.exe</code>
+        </div>
+    </section>
+
+    <section id="fsm">
+        <h2>FSM: “FRFR” Detector (Mealy)</h2>
+        <pre><code>#include &lt;stdio.h&gt>
+#include &lt;string.h&gt>
+
+enum State { S0,S1,S2,S3,S4 };
+enum In { F,R,X };
+
+get_in(char c){
+    if(c=='F')return F;
+    if(c=='R')return R;
+    return X;
+}
+
+int main() {
+    State st=S0;
+    char s[1000]; int cnt=0;
+    State nxt[5][3] = {
+        {S1,S0,S0},{S1,S2,S0},{S3,S0,S0},{S1,S4,S0},{S3,S0,S0}
+    };
+    int out[5][3] = {
+        {0,0,0},{0,0,0},{0,0,0},{0,1,0},{0,0,0}
+    };
+    printf("Input: "); scanf("%s",s);
+    for(int i=0;s[i];i++){
+        int in=get_in(s[i]);
+        cnt += out[st][in];
+        st = nxt[st][in];
+    }
+    printf("FRFR count=%d\n",cnt);
+    return 0;
+}</code></pre>
+        <div class="exercise-list">
+            <strong>Exercise:</strong> Adapt it to detect “RFRF” instead.  
+            <details>
+                <summary>Solution</summary>
+                <pre><code>// Swap transitions and output bits for F↔R in nxt and out arrays.</code></pre>
+            </details>
+        </div>
+    </section>
+
+    <section id="memory">
+        <h2>Dynamic Memory Allocation</h2>
+        <pre><code>#include &lt;stdio.h&gt>
+#include &lt;stdlib.h&gt>
+
+int main() {
+    int n=5;
+    int *arr = malloc(n * sizeof *arr);
+    for(int i=0;i<n;i++) arr[i]=i*i;
+    for(int i=0;i<n;i++) printf("%d ",arr[i]);
+    printf("\n");
+    free(arr);
+    return 0;
+}</code></pre>
+        <div class="exercise-list">
+            <strong>Exercise:</strong> Allocate 10 strings (20 chars each), read & print names.  
+            <details>
+                <summary>Solution</summary>
+                <pre><code>#include &lt;stdio.h&gt>
+#include &lt;stdlib.h&gt>
+
+int main() {
+    int n=10;
+    char (*names)[20] = malloc(n * sizeof *names);
+    for(int i=0;i<n;i++){
+        scanf("%19s",names[i]);
+    }
+    for(int i=0;i<n;i++){
+        printf("%s\n",names[i]);
+    }
+    free(names);
+    return 0;
+}</code></pre>
+            /></details>
+        </div>
+    </section>
+
+    <section id="structs">
+        <h2>Structures</h2>
+        <pre><code>struct Point { int x,y; };
+
+int main() {
+    struct Point p={10,20};
+    printf("(%d,%d)\n",p.x,p.y);
+    return 0;
+}</code></pre>
+        <div class="exercise-list">
+            <strong>Exercise:</strong> Define a <code>Student</code> struct (name,id,GPA), create & print one.  
+            <details>
+                <summary>Solution</summary>
+                <pre><code>struct Student {
+    char name[50];
+    int id;
+    double gpa;
+};
+
+int main() {
+    struct Student s={"Alice",12345,3.8};
+    printf("%s %d %.2f\n",s.name,s.id,s.gpa);
+    return 0;
+}</code></pre>
+            </details>
+        </div>
+    </section>
+
+    <section id="bitwise">
+        <h2>Bitwise Manipulation</h2>
+        <pre><code>unsigned a = 5;       // 0b0101
+unsigned b = a << 1;  // 0b1010 == 10
+unsigned c = a & 3;   // 0b0101 & 0b0011 == 1
+printf("b=%u, c=%u\n", b, c);</code></pre>
+        <div class="exercise-list">
+            <strong>Exercise:</strong> Write a function to check if the nᵗʰ bit of x is set.  
+            <details>
+                <summary>Solution</summary>
+                <pre><code>is_bit_set(unsigned x, int n) {
+    return (x >> n) & 1;
+}
+
+int main() {
+    unsigned v=13; // 0b1101
+    for(int i=0;i<4;i++){
+        printf("bit %d of %u: %d\n", i, v, is_bit_set(v,i));
+    }
+    return 0;
+}</code></pre>
+        </div>
+    </section>
+
+    <section id="exams">
+        <h2>Exam Resources</h2>
+        <ul>
+            <li><a href="exams/summer2023_midterm.pdf">Summer 2023 Midterm Exam</a></li>
+            <li><a href="exams/summer2024_midterm.pdf">Summer 2024 Midterm Exam</a></li>
+            <li><a href="exams/fall2023_final.pdf">Fall 2023 Final Exam</a></li>
+            <li><a href="exams/fall2024_final.pdf">Fall 2024 Final Exam</a></li>
+        </ul>
+    </section>
+
+</body>
+</html>
+
