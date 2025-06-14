@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"&#x1f4c2; File I/O in C &#x2013; Step-by-Step Guide with Examples","children":[{"content":"&#x1f4cc; What Is File I/O in C?","children":[{"content":"<code>fopen()</code>, <code>fclose()</code>","children":[],"payload":{"tag":"li","lines":"9,10"}},{"content":"<code>fprintf()</code>, <code>fscanf()</code>","children":[],"payload":{"tag":"li","lines":"10,11"}},{"content":"<code>fgets()</code>, <code>fputs()</code>, <code>fgetc()</code>, <code>fputc()</code>","children":[],"payload":{"tag":"li","lines":"11,13"}}],"payload":{"tag":"h2","lines":"6,7"}},{"content":"&#x1f522; Step-by-Step File Handling","children":[{"content":"&#x2705; Step 1: Declare File Pointers","children":[{"content":"<pre data-lines=\"19,22\"><code class=\"language-c\">FILE *fin, *fout;\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"19,22"}}],"payload":{"tag":"h3","lines":"17,18"}},{"content":"&#x2705; Step 2: Open the Files","children":[{"content":"<pre data-lines=\"29,33\"><code class=\"language-c\">fin = fopen(&quot;input.txt&quot;, &quot;r&quot;);    // open for reading\nfout = fopen(&quot;output.txt&quot;, &quot;w&quot;);  // open for writing\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"29,33"}}],"payload":{"tag":"h3","lines":"27,28"}},{"content":"&#x2705; Step 3: Check for Errors","children":[{"content":"<pre data-lines=\"44,50\"><code class=\"language-c\">if (fin == NULL || fout == NULL) {\n    printf(&quot;Error opening file!\\n&quot;);\n    return 1;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"44,50"}}],"payload":{"tag":"h3","lines":"40,41"}},{"content":"&#x2705; Step 4: Read/Write Data","children":[{"content":"<pre data-lines=\"55,60\"><code class=\"language-c\">int num;\nfscanf(fin, &quot;%d&quot;, &amp;num);             // read a number from input.txt\nfprintf(fout, &quot;Number: %d\\n&quot;, num); // write to output.txt\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"55,60"}}],"payload":{"tag":"h3","lines":"53,54"}},{"content":"&#x2705; Step 5: Close the Files","children":[{"content":"<pre data-lines=\"65,69\"><code class=\"language-c\">fclose(fin);\nfclose(fout);\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"65,69"}}],"payload":{"tag":"h3","lines":"63,64"}}],"payload":{"tag":"h2","lines":"15,16"}},{"content":"&#x1f9fe; Sample Full C Code","children":[{"content":"<pre data-lines=\"74,98\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nint main() {\n    FILE *fin, *fout;\n    int num;\n\n    fin = fopen(&quot;input.txt&quot;, &quot;r&quot;);\n    fout = fopen(&quot;output.txt&quot;, &quot;w&quot;);\n\n    if (fin == NULL || fout == NULL) {\n        printf(&quot;Error opening file!\\n&quot;);\n        return 1;\n    }\n\n    fscanf(fin, &quot;%d&quot;, &amp;num);\n    fprintf(fout, &quot;Number: %d\\n&quot;, num);\n\n    fclose(fin);\n    fclose(fout);\n\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"74,98"}}],"payload":{"tag":"h2","lines":"72,73"}},{"content":"&#x26a0;&#xfe0f; Common Errors in File I/O","children":[{"content":"<table data-lines=\"103,111\">\n<thead data-lines=\"103,104\">\n<tr data-lines=\"103,104\">\n<th>Mistake</th>\n<th>What Happens</th>\n</tr>\n</thead>\n<tbody data-lines=\"105,111\">\n<tr data-lines=\"105,106\">\n<td>&#x274c; Forget <code>*</code> in <code>FILE *fin</code></td>\n<td>Compiler error: invalid pointer declaration</td>\n</tr>\n<tr data-lines=\"106,107\">\n<td>&#x274c; Use filename without quotes</td>\n<td>Compiler error or undefined behavior</td>\n</tr>\n<tr data-lines=\"107,108\">\n<td>&#x274c; Forget to check for <code>NULL</code></td>\n<td>Crashes if file doesn&apos;t exist</td>\n</tr>\n<tr data-lines=\"108,109\">\n<td>&#x274c; Forget to close files</td>\n<td>May cause data loss or memory leaks</td>\n</tr>\n<tr data-lines=\"109,110\">\n<td>&#x274c; Using wrong mode (<code>&quot;r&quot;</code> instead of <code>&quot;w&quot;</code>)</td>\n<td>File won&apos;t be created if it doesn&apos;t exist</td>\n</tr>\n<tr data-lines=\"110,111\">\n<td>&#x274c; Writing with <code>fscanf</code> instead of <code>fprintf</code></td>\n<td>Invalid format or crash</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"103,111"}}],"payload":{"tag":"h2","lines":"101,102"}},{"content":"&#x2705; Tip","children":[],"payload":{"tag":"h2","lines":"114,115"}},{"content":"&#x1f4da; Summary Table","children":[{"content":"<table data-lines=\"122,130\">\n<thead data-lines=\"122,123\">\n<tr data-lines=\"122,123\">\n<th>Function</th>\n<th>Purpose</th>\n</tr>\n</thead>\n<tbody data-lines=\"124,130\">\n<tr data-lines=\"124,125\">\n<td><code>fopen()</code></td>\n<td>Opens a file</td>\n</tr>\n<tr data-lines=\"125,126\">\n<td><code>fclose()</code></td>\n<td>Closes a file</td>\n</tr>\n<tr data-lines=\"126,127\">\n<td><code>fscanf()</code></td>\n<td>Reads formatted input</td>\n</tr>\n<tr data-lines=\"127,128\">\n<td><code>fprintf()</code></td>\n<td>Writes formatted output</td>\n</tr>\n<tr data-lines=\"128,129\">\n<td><code>fgetc()</code></td>\n<td>Reads one character</td>\n</tr>\n<tr data-lines=\"129,130\">\n<td><code>fputc()</code></td>\n<td>Writes one character</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"122,130"}}],"payload":{"tag":"h2","lines":"120,121"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
