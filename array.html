@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"C Arrays and Strings &#x2013; Definitions and Examples","children":[{"content":"What Is an Array?","children":[],"payload":{"tag":"h2","lines":"6,7"}},{"content":"Integer 1D Array","children":[{"content":"<pre data-lines=\"17,20\"><code class=\"language-c\">int nums[4] = {10, 20, 30, 40};\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"17,20"}},{"content":"<pre data-lines=\"22,25\"><code class=\"language-c\">printf(&quot;%d&quot;, nums[0]); // prints 10\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"22,25"}},{"content":"<pre data-lines=\"27,30\"><code class=\"language-c\">nums[1] = 50; // now nums[1] is 50\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"27,30"}}],"payload":{"tag":"h2","lines":"12,13"}},{"content":"Float 1D Array","children":[{"content":"<pre data-lines=\"38,41\"><code class=\"language-c\">float prices[3] = {2.5, 3.75, 4.0};\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"38,41"}},{"content":"<pre data-lines=\"43,46\"><code class=\"language-c\">printf(&quot;%.2f&quot;, prices[1]); // prints 3.75\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"43,46"}}],"payload":{"tag":"h2","lines":"33,34"}},{"content":"String (Character Array)","children":[{"content":"<pre data-lines=\"54,57\"><code class=\"language-c\">char name[] = &quot;John&quot;;\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"54,57"}},{"content":"<pre data-lines=\"59,62\"><code class=\"language-c\">char name[] = {&apos;J&apos;, &apos;o&apos;, &apos;h&apos;, &apos;n&apos;, &apos;\\0&apos;};\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"59,62"}},{"content":"<pre data-lines=\"64,67\"><code class=\"language-c\">printf(&quot;%s&quot;, name); // prints John\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"64,67"}}],"payload":{"tag":"h2","lines":"49,50"}},{"content":"Comparison Table","children":[{"content":"<table data-lines=\"72,77\">\n<thead data-lines=\"72,73\">\n<tr data-lines=\"72,73\">\n<th>Type</th>\n<th>Data Type</th>\n<th>Example Declaration</th>\n<th>Usage Example</th>\n</tr>\n</thead>\n<tbody data-lines=\"74,77\">\n<tr data-lines=\"74,75\">\n<td>Integer</td>\n<td><code>int</code></td>\n<td><code>int nums[3] = {1,2,3};</code></td>\n<td><code>printf(&quot;%d&quot;, nums[0]);</code></td>\n</tr>\n<tr data-lines=\"75,76\">\n<td>Float</td>\n<td><code>float</code></td>\n<td><code>float a[2] = {1.1, 2.2};</code></td>\n<td><code>printf(&quot;%.1f&quot;, a[1]);</code></td>\n</tr>\n<tr data-lines=\"76,77\">\n<td>String</td>\n<td><code>char[]</code></td>\n<td><code>char name[] = &quot;Alice&quot;;</code></td>\n<td><code>printf(&quot;%s&quot;, name);</code></td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"72,77"}}],"payload":{"tag":"h2","lines":"70,71"}},{"content":"Sample Code: All in One","children":[{"content":"<pre data-lines=\"82,97\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nint main() {\n    int nums[3] = {10, 20, 30};\n    float scores[2] = {98.5, 87.0};\n    char name[] = &quot;Bob&quot;;\n\n    printf(&quot;First int: %d\\n&quot;, nums[0]);\n    printf(&quot;Second float: %.1f\\n&quot;, scores[1]);\n    printf(&quot;Name: %s\\n&quot;, name);\n\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"82,97"}}],"payload":{"tag":"h2","lines":"80,81"}},{"content":"Common Mistakes","children":[{"content":"<table data-lines=\"102,107\">\n<thead data-lines=\"102,103\">\n<tr data-lines=\"102,103\">\n<th>Mistake</th>\n<th>Problem</th>\n</tr>\n</thead>\n<tbody data-lines=\"104,107\">\n<tr data-lines=\"104,105\">\n<td>Accessing out of bounds (<code>a[5]</code>)</td>\n<td>Undefined behavior or crash</td>\n</tr>\n<tr data-lines=\"105,106\">\n<td>Forgetting <code>\\0</code> in string init</td>\n<td>May print garbage characters</td>\n</tr>\n<tr data-lines=\"106,107\">\n<td>Using <code>%d</code> for <code>float</code> or <code>char[]</code></td>\n<td>Incorrect output or compiler warning</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"102,107"}}],"payload":{"tag":"h2","lines":"100,101"}},{"content":"Tips","children":[{"content":"Arrays must be declared with a fixed size or initialized immediately.","children":[],"payload":{"tag":"li","lines":"112,113"}},{"content":"Strings must end with a null character (<code>\\0</code>).","children":[],"payload":{"tag":"li","lines":"113,114"}},{"content":"Always match format specifiers:","children":[{"content":"<code>%d</code> for <code>int</code>","children":[],"payload":{"tag":"li","lines":"115,116"}},{"content":"<code>%.2f</code> for <code>float</code>","children":[],"payload":{"tag":"li","lines":"116,117"}},{"content":"<code>%s</code> for <code>string</code>","children":[],"payload":{"tag":"li","lines":"117,119"}}],"payload":{"tag":"li","lines":"114,119"}}],"payload":{"tag":"h2","lines":"110,111"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
