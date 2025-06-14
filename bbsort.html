@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"Bubble Sort Algorithm: Step by Step Guide","children":[{"content":"Algorithm Overview","children":[],"payload":{"tag":"h2","lines":"2,3"}},{"content":"Time and Space Complexity","children":[{"content":"\n<p data-lines=\"6,7\">Time Complexity:</p>","children":[{"content":"Best Case: O(n) - When array is already sorted","children":[],"payload":{"tag":"li","lines":"7,8"}},{"content":"Average Case: O(n&#xb2;) - When array elements are in random order","children":[],"payload":{"tag":"li","lines":"8,9"}},{"content":"Worst Case: O(n&#xb2;) - When array is sorted in reverse order","children":[],"payload":{"tag":"li","lines":"9,11"}}],"payload":{"tag":"li","lines":"6,11"}},{"content":"\n<p data-lines=\"11,12\"><strong>Space Complexity:</strong></p>","children":[{"content":"O(1) - Only a single additional memory space is required for swapping","children":[],"payload":{"tag":"li","lines":"12,14"}}],"payload":{"tag":"li","lines":"11,14"}}],"payload":{"tag":"h2","lines":"5,6"}},{"content":"Step-by-Step Explanation","children":[{"content":"Step 1: Starting the Outer Loop","children":[{"content":"The algorithm starts with the first element","children":[],"payload":{"tag":"li","lines":"17,18"}},{"content":"Uses a loop that runs from first element to second-to-last element","children":[],"payload":{"tag":"li","lines":"18,20"}}],"payload":{"tag":"h3","lines":"16,17"}},{"content":"Step 2: Inner Loop Comparison","children":[{"content":"Compare adjacent elements (arr[j] and arr[j+1])","children":[],"payload":{"tag":"li","lines":"21,22"}},{"content":"If left element is greater than right element, swap them","children":[],"payload":{"tag":"li","lines":"22,23"}},{"content":"Continue this process until the end of unsorted portion","children":[],"payload":{"tag":"li","lines":"23,25"}}],"payload":{"tag":"h3","lines":"20,21"}},{"content":"Step 3: Optimization","children":[{"content":"Uses a &apos;swapped&apos; flag to track if any swapping occurred","children":[],"payload":{"tag":"li","lines":"26,27"}},{"content":"If no swaps occurred in inner loop, array is sorted","children":[],"payload":{"tag":"li","lines":"27,28"}},{"content":"Break the outer loop early in this case","children":[],"payload":{"tag":"li","lines":"28,30"}}],"payload":{"tag":"h3","lines":"25,26"}}],"payload":{"tag":"h2","lines":"14,15"}},{"content":"Example Walkthrough","children":[{"content":"First Pass:","children":[{"content":"1. (64,34) &#x2192; (34,64) &#x2192; [34,64,25,12]","children":[],"payload":{"tag":"li","lines":"34,35","listIndex":1}},{"content":"2. (64,25) &#x2192; (25,64) &#x2192; [34,25,64,12]","children":[],"payload":{"tag":"li","lines":"35,36","listIndex":2}},{"content":"3. (64,12) &#x2192; (12,64) &#x2192; [34,25,12,64]","children":[],"payload":{"tag":"li","lines":"36,38","listIndex":3}}],"payload":{"tag":"h3","lines":"33,34"}},{"content":"Second Pass:","children":[{"content":"1. (34,25) &#x2192; (25,34) &#x2192; [25,34,12,64]","children":[],"payload":{"tag":"li","lines":"39,40","listIndex":1}},{"content":"2. (34,12) &#x2192; (12,34) &#x2192; [25,12,34,64]","children":[],"payload":{"tag":"li","lines":"40,42","listIndex":2}}],"payload":{"tag":"h3","lines":"38,39"}},{"content":"Third Pass:","children":[{"content":"1. (25,12) &#x2192; (12,25) &#x2192; [12,25,34,64]","children":[],"payload":{"tag":"li","lines":"43,45","listIndex":1}}],"payload":{"tag":"h3","lines":"42,43"}},{"content":"Final Result:","children":[],"payload":{"tag":"h3","lines":"45,46"}}],"payload":{"tag":"h2","lines":"30,31"}},{"content":"Performance Characteristics","children":[{"content":"\n<p data-lines=\"49,50\">Advantages:</p>","children":[{"content":"Simple implementation","children":[],"payload":{"tag":"li","lines":"50,51"}},{"content":"Requires minimal extra space","children":[],"payload":{"tag":"li","lines":"51,52"}},{"content":"Stable sorting algorithm (maintains relative order of equal elements)","children":[],"payload":{"tag":"li","lines":"52,54"}}],"payload":{"tag":"li","lines":"49,54"}},{"content":"\n<p data-lines=\"54,55\">Disadvantages:</p>","children":[{"content":"Poor time complexity of O(n&#xb2;)","children":[],"payload":{"tag":"li","lines":"55,56"}},{"content":"Not suitable for large datasets","children":[],"payload":{"tag":"li","lines":"56,57"}},{"content":"Requires n-1 passes even if array becomes sorted earlier","children":[],"payload":{"tag":"li","lines":"57,58"}}],"payload":{"tag":"li","lines":"54,58"}}],"payload":{"tag":"h2","lines":"48,49"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
