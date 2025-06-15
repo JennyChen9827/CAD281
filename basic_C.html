@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"Basics of C Programming and Compilation","children":[{"content":"Basics of C","children":[{"content":"1. \n<p data-lines=\"4,5\"><strong>Syntax:</strong></p>","children":[{"content":"C programs consist of functions, with <code>main()</code> as the entry point.","children":[],"payload":{"tag":"li","lines":"5,7"}}],"payload":{"tag":"li","lines":"4,7","listIndex":1}},{"content":"2. \n<p data-lines=\"7,8\"><strong>Variables and Data Types:</strong></p>","children":[{"content":"Declare variables with data types like <code>int</code>, <code>char</code>, <code>float</code>.","children":[],"payload":{"tag":"li","lines":"8,10"}}],"payload":{"tag":"li","lines":"7,10","listIndex":2}},{"content":"3. \n<p data-lines=\"10,11\"><strong>Control Structures:</strong></p>","children":[{"content":"Use <code>if</code>, <code>else</code>, <code>for</code>, <code>while</code> for flow control.","children":[],"payload":{"tag":"li","lines":"11,13"}}],"payload":{"tag":"li","lines":"10,13","listIndex":3}},{"content":"4. \n<p data-lines=\"13,14\"><strong>Functions:</strong></p>","children":[{"content":"Modular code with reusable functions.","children":[],"payload":{"tag":"li","lines":"14,16"}}],"payload":{"tag":"li","lines":"13,16","listIndex":4}},{"content":"5. \n<p data-lines=\"16,17\"><strong>Pointers:</strong></p>","children":[{"content":"Variables that store memory addresses.","children":[],"payload":{"tag":"li","lines":"17,19"}}],"payload":{"tag":"li","lines":"16,19","listIndex":5}}],"payload":{"tag":"h2","lines":"2,3"}},{"content":"Compiling C Code","children":[{"content":"1. \n<p data-lines=\"21,22\">Write your code in a <code>.c</code> file (e.g., <code>program.c</code>).</p>","children":[],"payload":{"tag":"li","lines":"21,23","listIndex":1}},{"content":"2. \n<p data-lines=\"23,24\">Use GCC (GNU Compiler Collection) to compile:</p>\n<pre data-lines=\"24,26\"><code class=\"language-bash\">gcc program.c -o program\n</code></pre>","children":[],"payload":{"tag":"li","lines":"23,26","listIndex":2}}],"payload":{"tag":"h2","lines":"19,20"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
