@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"Function Pointers in C &#x2013; Step-by-Step Guide","children":[{"content":"&#x1f4cc; What Is a Function Pointer?","children":[{"content":"<pre data-lines=\"7,10\"><code data-lines=\"7,10\">A <span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">pointer**</span> stores the address of a <span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">that</span> can be called later, just like how you use pointers for variables.\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"7,10"}}],"payload":{"tag":"h2","lines":"6,7"}},{"content":"&#x1f9e0; Syntax","children":[{"content":"Example","children":[{"content":"<pre data-lines=\"20,31\"><code class=\"language-c\">int add(int a, int b) {\n    return a + b;\n}\n\nint (*func_ptr)(int, int); // Declare a function pointer\n\nfunc_ptr = add; // Assign the address of the function\n\nint result = func_ptr(3, 4); // Call the function through the pointer\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"20,31"}}],"payload":{"tag":"h3","lines":"18,19"}}],"payload":{"tag":"h2","lines":"12,13"}},{"content":"&#x1f4cd; When to Use Function Pointers","children":[{"content":"<table data-lines=\"36,42\">\n<thead data-lines=\"36,37\">\n<tr data-lines=\"36,37\">\n<th>Use Case</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody data-lines=\"38,42\">\n<tr data-lines=\"38,39\">\n<td>Callbacks</td>\n<td>Pass a function to another function (e.g., <code>qsort</code>)</td>\n</tr>\n<tr data-lines=\"39,40\">\n<td>Dynamic Behavior</td>\n<td>Choose function at runtime</td>\n</tr>\n<tr data-lines=\"40,41\">\n<td>Table of Functions</td>\n<td>Replace <code>switch-case</code> with function array</td>\n</tr>\n<tr data-lines=\"41,42\">\n<td>Implementing Polymorphism</td>\n<td>Mimic object-oriented features in C</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"36,42"}}],"payload":{"tag":"h2","lines":"34,35"}},{"content":"&#x2705; Simple Example: Passing Function as Argument","children":[{"content":"<pre data-lines=\"47,63\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nvoid greet() {\n    printf(&quot;Hello!\\n&quot;);\n}\n\nvoid runFunction(void (*fptr)()) {\n    fptr(); // Call the function passed in\n}\n\nint main() {\n    runFunction(greet);\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"47,63"}}],"payload":{"tag":"h2","lines":"45,46"}},{"content":"&#x1f501; Example: Function Pointer Array","children":[{"content":"<pre data-lines=\"68,81\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nint add(int a, int b) { return a + b; }\nint sub(int a, int b) { return a - b; }\n\nint main() {\n    int (*operations[2])(int, int) = { add, sub };\n    printf(&quot;Add: %d\\n&quot;, operations[0](10, 5));\n    printf(&quot;Sub: %d\\n&quot;, operations[1](10, 5));\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"68,81"}}],"payload":{"tag":"h2","lines":"66,67"}},{"content":"&#x26a0;&#xfe0f; Common Mistakes","children":[{"content":"<table data-lines=\"86,92\">\n<thead data-lines=\"86,87\">\n<tr data-lines=\"86,87\">\n<th>Mistake</th>\n<th>Why It Happens</th>\n<th>Fix</th>\n</tr>\n</thead>\n<tbody data-lines=\"88,92\">\n<tr data-lines=\"88,89\">\n<td>Forgetting <code>*</code> in declaration</td>\n<td>Declaring function instead of pointer</td>\n<td>Use <code>int (*ptr)(int)</code> instead of <code>int (ptr)(int)</code></td>\n</tr>\n<tr data-lines=\"89,90\">\n<td>Wrong parameter types</td>\n<td>Mismatch in function signature</td>\n<td>Make sure function and pointer match exactly</td>\n</tr>\n<tr data-lines=\"90,91\">\n<td>Calling without <code>()</code></td>\n<td>Pointer holds address, not call</td>\n<td>Use <code>fptr()</code> not just <code>fptr</code></td>\n</tr>\n<tr data-lines=\"91,92\">\n<td>Dereferencing unnecessarily</td>\n<td><code>(*fptr)()</code> is valid, but <code>fptr()</code> is simpler</td>\n<td>Prefer <code>fptr()</code> unless needed</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"86,92"}}],"payload":{"tag":"h2","lines":"84,85"}},{"content":"&#x1f914; Why Use Function Pointers?","children":[{"content":"<strong>Flexibility</strong>: Change logic at runtime","children":[],"payload":{"tag":"li","lines":"97,98"}},{"content":"<strong>Abstraction</strong>: Decouple behavior from implementation","children":[],"payload":{"tag":"li","lines":"98,99"}},{"content":"<strong>Efficiency</strong>: Avoid long <code>switch-case</code> blocks","children":[],"payload":{"tag":"li","lines":"99,100"}},{"content":"<strong>Callbacks</strong>: Respond to events (e.g., sorting, file parsing)","children":[],"payload":{"tag":"li","lines":"100,102"}}],"payload":{"tag":"h2","lines":"95,96"}},{"content":"&#x1f9ea; Practice Task","children":[{"content":"<pre data-lines=\"110,126\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nint multiply(int a, int b) { return a * b; }\nint divide(int a, int b) { return b != 0 ? a / b : 0; }\n\nvoid operate(int x, int y, int (*op)(int, int)) {\n    printf(&quot;Result: %d\\n&quot;, op(x, y));\n}\n\nint main() {\n    operate(6, 3, multiply);\n    operate(6, 3, divide);\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"110,126"}}],"payload":{"tag":"h2","lines":"104,105"}},{"content":"&#x1f9f9; Summary","children":[{"content":"Function pointers = variables storing function addresses","children":[],"payload":{"tag":"li","lines":"131,132"}},{"content":"Syntax: <code>return_type (*ptr)(param_types)</code>","children":[],"payload":{"tag":"li","lines":"132,133"}},{"content":"Useful for callbacks, flexibility, and cleaner code","children":[],"payload":{"tag":"li","lines":"133,134"}},{"content":"Watch out for syntax and signature mismatches","children":[],"payload":{"tag":"li","lines":"134,136"}}],"payload":{"tag":"h2","lines":"129,130"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
