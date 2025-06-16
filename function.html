@@ -1,123 +1,55 @@
-# Functions in C – Step by Step Guide
-```
-Functions help organize code into reusable blocks, improve readability, and enable easier debugging and testing.
-```
----
-
-## 🔍 What Is a Function?
-```
-A function is a named block of code that performs a specific task.
-```
----
-
-## 🧱 Structure of a Function
-
-```c
-return_type function_name(parameter_list) {
-    // body of the function
-    return value;
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
 }
-```
-
----
-
-## ✅ Example: Basic Function
-
-```c
-#include <stdio.h>
-
-// Function declaration
-int add(int a, int b);
-
-int main() {
-    int result = add(3, 4); // Function call
-    printf("Sum: %d\n", result);
-    return 0;
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
-
-// Function definition
-int add(int a, int b) {
-    return a + b;
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
 }
-```
-
----
-
-## 🔁 Why Use Functions?
-
-- Reuse code multiple times
-- Keep `main()` clean and readable
-- Break large problems into small parts
-
----
-
-## ⏱ When and Where to Use
-
-| When | Where |
-|------|-------|
-| Repeating code | In separate files or below `main()` |
-| To improve modularity | Inside libraries or headers |
-| To isolate logic | Each task as one function |
-
----
-
-## 🛠 Common Types of Functions
-
-1. No arguments, no return:
-```c
-void sayHello() {
-    printf("Hello!\n");
+.markmap-dark {
+  background: #27272a;
+  color: white;
 }
-```
-
-2. With arguments, no return:
-```c
-void greet(char name[]) {
-    printf("Hi %s!\n", name);
-}
-```
-
-3. With arguments and return:
-```c
-int square(int x) {
-    return x * x;
-}
-```
-
----
-
-## ⚠️ Common Errors
-
-| Mistake | Problem |
-|--------|---------|
-| Missing return value | Undefined behavior if return type is non-void |
-| Wrong return type | Causes compiler warnings or crashes |
-| Forgetting to declare function | Implicit declarations are not allowed in modern C |
-| Using global variables without care | Can lead to bugs and hard-to-track issues |
-
----
-
-## 📌 Function Declaration vs Definition
-
-| Term | Meaning |
-|------|---------|
-| Declaration | Tells the compiler function exists (`int add(int, int);`) |
-| Definition | Actual code of the function |
-
----
-
-## 📚 Best Practices
-
-- Use meaningful function names
-- Keep functions short and focused on one task
-- Declare before use or use header files
-- Avoid global variables when possible
-
----
-
-## ✅ Summary
-
-- Functions divide your code into logical blocks.
-- You should define and declare them properly.
-- Understand when to return values and how to pass parameters.
-
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"Functions in C &#x2013; Step by Step Guide","children":[{"content":"&#x1f50d; What Is a Function?","children":[{"content":"<pre data-lines=\"7,10\"><code data-lines=\"7,10\"><span class=\"hljs-selector-tag\">A</span> function is <span class=\"hljs-selector-tag\">a</span> named block of <span class=\"hljs-selector-tag\">code</span> that performs <span class=\"hljs-selector-tag\">a</span> specific task.\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"7,10"}}],"payload":{"tag":"h2","lines":"6,7"}},{"content":"&#x1f9f1; Structure of a Function","children":[{"content":"<pre data-lines=\"14,20\"><code class=\"language-c\">return_type function_name(parameter_list) {\n    // body of the function\n    return value;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"14,20"}}],"payload":{"tag":"h2","lines":"12,13"}},{"content":"&#x2705; Example: Basic Function","children":[{"content":"<pre data-lines=\"25,42\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\n// Function declaration\nint add(int a, int b);\n\nint main() {\n    int result = add(3, 4); // Function call\n    printf(&quot;Sum: %d\\n&quot;, result);\n    return 0;\n}\n\n// Function definition\nint add(int a, int b) {\n    return a + b;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"25,42"}}],"payload":{"tag":"h2","lines":"23,24"}},{"content":"&#x1f501; Why Use Functions?","children":[{"content":"Reuse code multiple times","children":[],"payload":{"tag":"li","lines":"47,48"}},{"content":"Keep <code>main()</code> clean and readable","children":[],"payload":{"tag":"li","lines":"48,49"}},{"content":"Break large problems into small parts","children":[],"payload":{"tag":"li","lines":"49,51"}}],"payload":{"tag":"h2","lines":"45,46"}},{"content":"&#x23f1; When and Where to Use","children":[{"content":"<table data-lines=\"55,60\">\n<thead data-lines=\"55,56\">\n<tr data-lines=\"55,56\">\n<th>When</th>\n<th>Where</th>\n</tr>\n</thead>\n<tbody data-lines=\"57,60\">\n<tr data-lines=\"57,58\">\n<td>Repeating code</td>\n<td>In separate files or below <code>main()</code></td>\n</tr>\n<tr data-lines=\"58,59\">\n<td>To improve modularity</td>\n<td>Inside libraries or headers</td>\n</tr>\n<tr data-lines=\"59,60\">\n<td>To isolate logic</td>\n<td>Each task as one function</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"55,60"}}],"payload":{"tag":"h2","lines":"53,54"}},{"content":"&#x1f6e0; Common Types of Functions","children":[{"content":"<pre data-lines=\"66,71\"><code class=\"language-c\">void sayHello() {\n    printf(&quot;Hello!\\n&quot;);\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"66,71"}},{"content":"<pre data-lines=\"73,78\"><code class=\"language-c\">void greet(char name[]) {\n    printf(&quot;Hi %s!\\n&quot;, name);\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"73,78"}},{"content":"<pre data-lines=\"80,85\"><code class=\"language-c\">int square(int x) {\n    return x * x;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"80,85"}}],"payload":{"tag":"h2","lines":"63,64"}},{"content":"&#x26a0;&#xfe0f; Common Errors","children":[{"content":"<table data-lines=\"90,96\">\n<thead data-lines=\"90,91\">\n<tr data-lines=\"90,91\">\n<th>Mistake</th>\n<th>Problem</th>\n</tr>\n</thead>\n<tbody data-lines=\"92,96\">\n<tr data-lines=\"92,93\">\n<td>Missing return value</td>\n<td>Undefined behavior if return type is non-void</td>\n</tr>\n<tr data-lines=\"93,94\">\n<td>Wrong return type</td>\n<td>Causes compiler warnings or crashes</td>\n</tr>\n<tr data-lines=\"94,95\">\n<td>Forgetting to declare function</td>\n<td>Implicit declarations are not allowed in modern C</td>\n</tr>\n<tr data-lines=\"95,96\">\n<td>Using global variables without care</td>\n<td>Can lead to bugs and hard-to-track issues</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"90,96"}}],"payload":{"tag":"h2","lines":"88,89"}},{"content":"&#x1f4cc; Function Declaration vs Definition","children":[{"content":"<table data-lines=\"101,105\">\n<thead data-lines=\"101,102\">\n<tr data-lines=\"101,102\">\n<th>Term</th>\n<th>Meaning</th>\n</tr>\n</thead>\n<tbody data-lines=\"103,105\">\n<tr data-lines=\"103,104\">\n<td>Declaration</td>\n<td>Tells the compiler function exists (<code>int add(int, int);</code>)</td>\n</tr>\n<tr data-lines=\"104,105\">\n<td>Definition</td>\n<td>Actual code of the function</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"101,105"}}],"payload":{"tag":"h2","lines":"99,100"}},{"content":"&#x1f4da; Best Practices","children":[{"content":"Use meaningful function names","children":[],"payload":{"tag":"li","lines":"110,111"}},{"content":"Keep functions short and focused on one task","children":[],"payload":{"tag":"li","lines":"111,112"}},{"content":"Declare before use or use header files","children":[],"payload":{"tag":"li","lines":"112,113"}},{"content":"Avoid global variables when possible","children":[],"payload":{"tag":"li","lines":"113,115"}}],"payload":{"tag":"h2","lines":"108,109"}},{"content":"&#x2705; Summary","children":[{"content":"Functions divide your code into logical blocks.","children":[],"payload":{"tag":"li","lines":"119,120"}},{"content":"You should define and declare them properly.","children":[],"payload":{"tag":"li","lines":"120,121"}},{"content":"Understand when to return values and how to pass parameters.","children":[],"payload":{"tag":"li","lines":"121,123"}}],"payload":{"tag":"h2","lines":"117,118"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
