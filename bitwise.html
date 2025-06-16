@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"Bitwise Manipulation in C","children":[{"content":"&#x1f527; Common Bitwise Operators","children":[{"content":"<table data-lines=\"8,16\">\n<thead data-lines=\"8,9\">\n<tr data-lines=\"8,9\">\n<th>Operator</th>\n<th>Meaning</th>\n<th>Example</th>\n</tr>\n</thead>\n<tbody data-lines=\"10,16\">\n<tr data-lines=\"10,11\">\n<td><code>&amp;</code></td>\n<td>AND</td>\n<td><code>a &amp; b</code></td>\n</tr>\n<tr data-lines=\"11,12\">\n<td>`</td>\n<td>`</td>\n<td>OR</td>\n</tr>\n<tr data-lines=\"12,13\">\n<td><code>^</code></td>\n<td>XOR (toggle)</td>\n<td><code>a ^ b</code></td>\n</tr>\n<tr data-lines=\"13,14\">\n<td><code>~</code></td>\n<td>NOT (complement)</td>\n<td><code>~a</code></td>\n</tr>\n<tr data-lines=\"14,15\">\n<td><code>&lt;&lt;</code></td>\n<td>Left Shift</td>\n<td><code>a &lt;&lt; 1</code></td>\n</tr>\n<tr data-lines=\"15,16\">\n<td><code>&gt;&gt;</code></td>\n<td>Right Shift</td>\n<td><code>a &gt;&gt; 1</code></td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"8,16"}}],"payload":{"tag":"h2","lines":"6,7"}},{"content":"&#x1f6e0; Bitwise Techniques","children":[{"content":"&#x2705; Set a Bit","children":[{"content":"<pre data-lines=\"25,28\"><code class=\"language-c\">x = x | (1 &lt;&lt; n);\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"25,28"}}],"payload":{"tag":"h3","lines":"21,22"}},{"content":"&#x274c; Clear a Bit","children":[{"content":"<pre data-lines=\"33,36\"><code class=\"language-c\">x = x &amp; ~(1 &lt;&lt; n);\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"33,36"}}],"payload":{"tag":"h3","lines":"29,30"}},{"content":"&#x1f501; Toggle (Flip) a Bit","children":[{"content":"<pre data-lines=\"41,44\"><code class=\"language-c\">x = x ^ (1 &lt;&lt; n);\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"41,44"}}],"payload":{"tag":"h3","lines":"37,38"}},{"content":"&#x1f50d; Check if a Bit is Set","children":[{"content":"<pre data-lines=\"47,52\"><code class=\"language-c\">if (x &amp; (1 &lt;&lt; n)) {\n    printf(&quot;Bit %d is set\\n&quot;, n);\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"47,52"}}],"payload":{"tag":"h3","lines":"45,46"}}],"payload":{"tag":"h2","lines":"19,20"}},{"content":"&#x1f3af; Bit Masking","children":[{"content":"Example: Enable and Check Flags","children":[{"content":"<pre data-lines=\"59,74\"><code class=\"language-c\">#define FLAG_READ  0x01 // 0001\n#define FLAG_WRITE 0x02 // 0010\n#define FLAG_EXEC  0x04 // 0100\n\nunsigned char permissions = 0;\n\n// Set read and write permissions\npermissions |= FLAG_READ | FLAG_WRITE;\n\n// Check if write is enabled\nif (permissions &amp; FLAG_WRITE) {\n    printf(&quot;Write enabled\\n&quot;);\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"59,74"}}],"payload":{"tag":"h3","lines":"57,58"}}],"payload":{"tag":"h2","lines":"55,56"}},{"content":"&#x26a0;&#xfe0f; Common Errors","children":[{"content":"<table data-lines=\"79,85\">\n<thead data-lines=\"79,80\">\n<tr data-lines=\"79,80\">\n<th>Mistake</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody data-lines=\"81,85\">\n<tr data-lines=\"81,82\">\n<td>Using <code>=</code> instead of `</td>\n<td>=` for setting bits</td>\n</tr>\n<tr data-lines=\"82,83\">\n<td>Forgetting parentheses: <code>1 &lt;&lt; n &amp; x</code> becomes <code>(1 &lt;&lt; n) &amp; x</code></td>\n<td></td>\n</tr>\n<tr data-lines=\"83,84\">\n<td>Shifting too far: <code>1 &lt;&lt; 32</code> is undefined on 32-bit systems</td>\n<td></td>\n</tr>\n<tr data-lines=\"84,85\">\n<td>Not using <code>unsigned</code> types: bitwise shift can behave oddly on signed ints</td>\n<td></td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"79,85"}}],"payload":{"tag":"h2","lines":"77,78"}},{"content":"&#x2705; Summary","children":[{"content":"Use bitwise operators for efficient manipulation of binary flags.","children":[],"payload":{"tag":"li","lines":"90,91"}},{"content":"Use masks with <code>|</code>, <code>&amp;</code>, and <code>^</code> to control specific bits.","children":[],"payload":{"tag":"li","lines":"91,92"}},{"content":"Always use <code>unsigned</code> for safety and clarity when shifting bits.","children":[],"payload":{"tag":"li","lines":"92,94"}}],"payload":{"tag":"h2","lines":"88,89"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
