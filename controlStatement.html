@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"Control Statements in C","children":[{"content":"&#x1f500; 1. <code>if</code> Statement","children":[{"content":"Syntax:","children":[{"content":"<pre data-lines=\"9,14\"><code class=\"language-c\">if (condition) {\n    // code if condition is true\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"9,14"}}],"payload":{"tag":"h3","lines":"8,9"}},{"content":"Example:","children":[{"content":"<pre data-lines=\"16,22\"><code class=\"language-c\">int x = 10;\nif (x &gt; 5) {\n    printf(&quot;x is greater than 5\\n&quot;);\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"16,22"}}],"payload":{"tag":"h3","lines":"15,16"}}],"payload":{"tag":"h2","lines":"6,7"}},{"content":"&#x1f500; 2. <code>if-else</code> Statement","children":[{"content":"Example:","children":[{"content":"<pre data-lines=\"28,36\"><code class=\"language-c\">int score = 70;\nif (score &gt;= 60) {\n    printf(&quot;Pass\\n&quot;);\n} else {\n    printf(&quot;Fail\\n&quot;);\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"28,36"}}],"payload":{"tag":"h3","lines":"27,28"}}],"payload":{"tag":"h2","lines":"25,26"}},{"content":"&#x1f500; 3. Nested <code>if</code>","children":[{"content":"Example:","children":[{"content":"<pre data-lines=\"42,54\"><code class=\"language-c\">int score = 85;\nif (score &gt;= 60) {\n    if (score &gt;= 90) {\n        printf(&quot;Grade A\\n&quot;);\n    } else {\n        printf(&quot;Grade B\\n&quot;);\n    }\n} else {\n    printf(&quot;Fail\\n&quot;);\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"42,54"}}],"payload":{"tag":"h3","lines":"41,42"}}],"payload":{"tag":"h2","lines":"39,40"}},{"content":"&#x1f501; 4. <code>for</code> Loop","children":[{"content":"Syntax:","children":[{"content":"<pre data-lines=\"60,65\"><code class=\"language-c\">for (initialization; condition; increment) {\n    // loop body\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"60,65"}}],"payload":{"tag":"h3","lines":"59,60"}},{"content":"Example:","children":[{"content":"<pre data-lines=\"67,72\"><code class=\"language-c\">for (int i = 0; i &lt; 5; i++) {\n    printf(&quot;%d\\n&quot;, i);\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"67,72"}}],"payload":{"tag":"h3","lines":"66,67"}}],"payload":{"tag":"h2","lines":"57,58"}},{"content":"&#x1f501; 5. <code>while</code> Loop","children":[{"content":"Example:","children":[{"content":"<pre data-lines=\"78,85\"><code class=\"language-c\">int i = 0;\nwhile (i &lt; 5) {\n    printf(&quot;%d\\n&quot;, i);\n    i++;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"78,85"}}],"payload":{"tag":"h3","lines":"77,78"}}],"payload":{"tag":"h2","lines":"75,76"}},{"content":"&#x1f501; 6. <code>do-while</code> Loop","children":[{"content":"Example:","children":[{"content":"<pre data-lines=\"91,98\"><code class=\"language-c\">int i = 0;\ndo {\n    printf(&quot;%d\\n&quot;, i);\n    i++;\n} while (i &lt; 5);\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"91,98"}}],"payload":{"tag":"h3","lines":"90,91"}}],"payload":{"tag":"h2","lines":"88,89"}},{"content":"&#x26a0;&#xfe0f; Common Errors","children":[{"content":"<table data-lines=\"103,109\">\n<thead data-lines=\"103,104\">\n<tr data-lines=\"103,104\">\n<th>Error</th>\n<th>Description</th>\n<th>Example</th>\n</tr>\n</thead>\n<tbody data-lines=\"105,109\">\n<tr data-lines=\"105,106\">\n<td><code>=</code> vs <code>==</code></td>\n<td><code>=</code> assigns, <code>==</code> compares</td>\n<td><code>if (x = 5)</code> assigns 5 to x</td>\n</tr>\n<tr data-lines=\"106,107\">\n<td>Missing braces</td>\n<td>Can cause confusion in multi-line blocks</td>\n<td>Always use <code>{}</code> for clarity</td>\n</tr>\n<tr data-lines=\"107,108\">\n<td>Infinite loops</td>\n<td>Forgetting to update loop variable</td>\n<td><code>while (1)</code> without <code>break</code></td>\n</tr>\n<tr data-lines=\"108,109\">\n<td>Off-by-one error</td>\n<td>Loop runs one extra or one less</td>\n<td><code>for (i = 0; i &lt;= 5; i++)</code> runs 6 times</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"103,109"}}],"payload":{"tag":"h2","lines":"101,102"}},{"content":"&#x2705; Summary","children":[{"content":"Use <code>if</code>, <code>else</code>, <code>for</code>, <code>while</code>, and <code>do-while</code> to control program logic.","children":[],"payload":{"tag":"li","lines":"114,115"}},{"content":"Be careful with comparison vs assignment (<code>==</code> vs <code>=</code>).","children":[],"payload":{"tag":"li","lines":"115,116"}},{"content":"Always test your logic and use braces <code>{}</code> to avoid errors.","children":[],"payload":{"tag":"li","lines":"116,117"}}],"payload":{"tag":"h2","lines":"112,113"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
