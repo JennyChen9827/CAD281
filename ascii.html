@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"Understanding ASCII in C","children":[{"content":"&#x1f522; ASCII Table (Partial)","children":[{"content":"<table data-lines=\"8,17\">\n<thead data-lines=\"8,9\">\n<tr data-lines=\"8,9\">\n<th>Character</th>\n<th>ASCII Code</th>\n</tr>\n</thead>\n<tbody data-lines=\"10,17\">\n<tr data-lines=\"10,11\">\n<td>A</td>\n<td>65</td>\n</tr>\n<tr data-lines=\"11,12\">\n<td>B</td>\n<td>66</td>\n</tr>\n<tr data-lines=\"12,13\">\n<td>a</td>\n<td>97</td>\n</tr>\n<tr data-lines=\"13,14\">\n<td>b</td>\n<td>98</td>\n</tr>\n<tr data-lines=\"14,15\">\n<td>0</td>\n<td>48</td>\n</tr>\n<tr data-lines=\"15,16\">\n<td>Space</td>\n<td>32</td>\n</tr>\n<tr data-lines=\"16,17\">\n<td>Newline (<code>\\n</code>)</td>\n<td>10</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"8,17"}}],"payload":{"tag":"h2","lines":"6,7"}},{"content":"&#x1f9e0; Why Learn ASCII?","children":[{"content":"Characters in C are stored as <code>char</code>, but treated like small integers.","children":[],"payload":{"tag":"li","lines":"22,23"}},{"content":"You can do math with characters, compare them, or convert between cases.","children":[],"payload":{"tag":"li","lines":"23,25"}}],"payload":{"tag":"h2","lines":"20,21"}},{"content":"&#x1f4d8; Example 1: Print ASCII Code of Characters","children":[{"content":"<pre data-lines=\"29,39\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nint main() {\n    char ch = &apos;A&apos;;\n    printf(&quot;Character: %c\\n&quot;, ch);\n    printf(&quot;ASCII Code: %d\\n&quot;, ch);\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"29,39"}}],"payload":{"tag":"h2","lines":"27,28"}},{"content":"&#x1f501; Example 2: Loop Through Alphabet Using ASCII","children":[{"content":"<pre data-lines=\"44,54\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nint main() {\n    for (char ch = &apos;A&apos;; ch &lt;= &apos;Z&apos;; ch++) {\n        printf(&quot;%c = %d\\n&quot;, ch, ch);\n    }\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"44,54"}}],"payload":{"tag":"h2","lines":"42,43"}},{"content":"&#x1f501; Convert Lowercase to Uppercase","children":[{"content":"<pre data-lines=\"59,69\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nint main() {\n    char lower = &apos;g&apos;;\n    char upper = lower - 32; // &apos;g&apos; is 103, &apos;G&apos; is 71\n    printf(&quot;Lowercase: %c, Uppercase: %c\\n&quot;, lower, upper);\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"59,69"}}],"payload":{"tag":"h2","lines":"57,58"}},{"content":"&#x1f9ee; Tip: ASCII Trick","children":[{"content":"<pre data-lines=\"76,82\"><code class=\"language-c\">// Turn uppercase to lowercase using OR with 0x20\nchar upper = &apos;D&apos;;\nchar lower = upper | 0x20; // Works because of ASCII binary pattern\nprintf(&quot;%c -&gt; %c\\n&quot;, upper, lower); // Output: D -&gt; d\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"76,82"}}],"payload":{"tag":"h2","lines":"74,75"}},{"content":"&#x274c; Common Mistakes","children":[{"content":"Confusing <code>&apos;1&apos;</code> (ASCII 49) with <code>1</code> (int)","children":[],"payload":{"tag":"li","lines":"87,88"}},{"content":"Forgetting that <code>&apos;a&apos;</code> is not the same as <code>&quot;a&quot;</code> (char vs string)","children":[],"payload":{"tag":"li","lines":"88,89"}},{"content":"Thinking characters are not numeric&#x2014;remember, <code>&apos;A&apos;</code> is just 65.","children":[],"payload":{"tag":"li","lines":"89,91"}}],"payload":{"tag":"h2","lines":"85,86"}},{"content":"&#x2705; Summary","children":[{"content":"ASCII maps characters to numbers.","children":[],"payload":{"tag":"li","lines":"95,96"}},{"content":"You can use math to manipulate characters.","children":[],"payload":{"tag":"li","lines":"96,97"}},{"content":"Useful for case conversion, character comparison, and loops.","children":[],"payload":{"tag":"li","lines":"97,98"}}],"payload":{"tag":"h2","lines":"93,94"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
