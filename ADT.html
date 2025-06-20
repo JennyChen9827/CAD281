@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"&#x1f9f1; ADT in C &#x2013; Stack and Queue (Using Arrays Only)","children":[{"content":"&#x1f4cc; What is ADT?","children":[{"content":"<pre data-lines=\"3,6\"><code data-lines=\"3,6\">An Abstract Data Type (ADT) <span class=\"hljs-keyword\">is</span> a logical description <span class=\"hljs-keyword\">of</span> a data structure <span class=\"hljs-keyword\">that</span> defines <span class=\"hljs-keyword\">its</span> behavior (what <span class=\"hljs-keyword\">it</span> <span class=\"hljs-keyword\">does</span>), <span class=\"hljs-keyword\">without</span> describing <span class=\"hljs-keyword\">its</span> implementation (how <span class=\"hljs-keyword\">it</span> <span class=\"hljs-keyword\">does</span> <span class=\"hljs-keyword\">it</span>).\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"3,6"}}],"payload":{"tag":"h2","lines":"2,3"}},{"content":"&#x2705; Stack ADT &#x2013; Array Implementation (No Pointers)","children":[{"content":"<code>stack.h</code>","children":[{"content":"<pre data-lines=\"11,30\"><code class=\"language-c\">#ifndef STACK_H\n#define STACK_H\n\n#define SIZE 100\n\ntypedef struct {\n    int data[SIZE];\n    int top;\n} Stack;\n\nvoid initStack(Stack s[]);\nint isStackEmpty(Stack s[]);\nvoid push(Stack s[], int val);\nint pop(Stack s[]);\nint peek(Stack s[]);\n\n#endif\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"11,30"}}],"payload":{"tag":"h3","lines":"10,11"}},{"content":"<code>stack.c</code>","children":[{"content":"<pre data-lines=\"32,64\"><code class=\"language-c\">#include &quot;stack.h&quot;\n\nvoid initStack(Stack s[]) {\n    s[0].top = -1;\n}\n\nint isStackEmpty(Stack s[]) {\n    return s[0].top == -1;\n}\n\nvoid push(Stack s[], int val) {\n    if (s[0].top &lt; SIZE - 1) {\n        s[0].top++;\n        s[0].data[s[0].top] = val;\n    }\n}\n\nint pop(Stack s[]) {\n    if (!isStackEmpty(s)) {\n        return s[0].data[s[0].top--];\n    }\n    return -1;\n}\n\nint peek(Stack s[]) {\n    if (!isStackEmpty(s)) {\n        return s[0].data[s[0].top];\n    }\n    return -1;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"32,64"}}],"payload":{"tag":"h3","lines":"31,32"}}],"payload":{"tag":"h2","lines":"8,9"}},{"content":"&#x2705; Queue ADT &#x2013; Array Implementation (No Pointers)","children":[{"content":"<code>queue.h</code>","children":[{"content":"<pre data-lines=\"70,92\"><code class=\"language-c\">#ifndef QUEUE_H\n#define QUEUE_H\n\n#define QSIZE 100\n\ntypedef struct {\n    int data[QSIZE];\n    int front;\n    int rear;\n    int count;\n} Queue;\n\nvoid initQueue(Queue q[]);\nint isQueueEmpty(Queue q[]);\nint isQueueFull(Queue q[]);\nvoid enqueue(Queue q[], int val);\nint dequeue(Queue q[]);\nint frontValue(Queue q[]);\n\n#endif\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"70,92"}}],"payload":{"tag":"h3","lines":"69,70"}},{"content":"<code>queue.c</code>","children":[{"content":"<pre data-lines=\"94,141\"><code class=\"language-c\">#include &quot;queue.h&quot;\n\nvoid initQueue(Queue q[]) {\n    q[0].front = -1;\n    q[0].rear = -1;\n    q[0].count = 0;\n}\n\nint isQueueEmpty(Queue q[]) {\n    return q[0].count == 0;\n}\n\nint isQueueFull(Queue q[]) {\n    return q[0].count == QSIZE;\n}\n\nvoid enqueue(Queue q[], int val) {\n    if (!isQueueFull(q)) {\n        if (q[0].front == -1) q[0].front = 0;\n        q[0].rear = (q[0].rear + 1) % QSIZE;\n        q[0].data[q[0].rear] = val;\n        q[0].count++;\n    }\n}\n\nint dequeue(Queue q[]) {\n    if (!isQueueEmpty(q)) {\n        int val = q[0].data[q[0].front];\n        q[0].front = (q[0].front + 1) % QSIZE;\n        q[0].count--;\n        if (q[0].count == 0) {\n            q[0].front = -1;\n            q[0].rear = -1;\n        }\n        return val;\n    }\n    return -1;\n}\n\nint frontValue(Queue q[]) {\n    if (!isQueueEmpty(q)) {\n        return q[0].data[q[0].front];\n    }\n    return -1;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"94,141"}}],"payload":{"tag":"h3","lines":"93,94"}}],"payload":{"tag":"h2","lines":"67,68"}},{"content":"&#x26a0;&#xfe0f; Common Errors","children":[{"content":"<table data-lines=\"146,151\">\n<thead data-lines=\"146,147\">\n<tr data-lines=\"146,147\">\n<th>Mistake</th>\n<th>What Happens</th>\n</tr>\n</thead>\n<tbody data-lines=\"148,151\">\n<tr data-lines=\"148,149\">\n<td>Forgetting to initialize</td>\n<td>Results in garbage values</td>\n</tr>\n<tr data-lines=\"149,150\">\n<td>Overflow/underflow</td>\n<td>Causes data loss or logic bugs</td>\n</tr>\n<tr data-lines=\"150,151\">\n<td>Incorrect index usage</td>\n<td>May crash or corrupt memory</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"146,151"}}],"payload":{"tag":"h2","lines":"144,145"}},{"content":"&#x2705; Summary","children":[{"content":"Stack: LIFO, use <code>top</code>, <code>push()</code>, <code>pop()</code>, <code>peek()</code>","children":[],"payload":{"tag":"li","lines":"156,157"}},{"content":"Queue: FIFO, use <code>front</code>, <code>rear</code>, <code>enqueue()</code>, <code>dequeue()</code>","children":[],"payload":{"tag":"li","lines":"157,158"}},{"content":"Use arrays for simplicity in beginner-level ADT","children":[],"payload":{"tag":"li","lines":"158,160"}}],"payload":{"tag":"h2","lines":"154,155"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
