@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"&#x1f4cc; Understanding Pointers in C","children":[{"content":"&#x1f9e0; What Is a Pointer?","children":[{"content":"<pre data-lines=\"11,15\"><code class=\"language-c\">int a = 10;\nint *p = &amp;a; // p stores the address of a\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"11,15"}}],"payload":{"tag":"h2","lines":"7,8"}},{"content":"&#x2753; Why Use Pointers?","children":[{"content":"<strong>Efficient memory usage</strong>","children":[],"payload":{"tag":"li","lines":"20,21"}},{"content":"<strong>Function argument passing by reference</strong>","children":[],"payload":{"tag":"li","lines":"21,22"}},{"content":"<strong>Dynamic memory allocation</strong>","children":[],"payload":{"tag":"li","lines":"22,23"}},{"content":"<strong>Building data structures like linked lists and trees</strong>","children":[],"payload":{"tag":"li","lines":"23,25"}}],"payload":{"tag":"h2","lines":"18,19"}},{"content":"&#x23f0; When to Use Pointers?","children":[{"content":"When modifying variables inside functions (pass by reference)","children":[],"payload":{"tag":"li","lines":"29,30"}},{"content":"When dealing with arrays or strings","children":[],"payload":{"tag":"li","lines":"30,31"}},{"content":"When allocating memory dynamically using <code>malloc</code>, <code>calloc</code>, <code>free</code>","children":[],"payload":{"tag":"li","lines":"31,33"}}],"payload":{"tag":"h2","lines":"27,28"}},{"content":"&#x1f50d; How to Use Pointers?","children":[{"content":"Sample 1: Basic Pointer Usage","children":[{"content":"<pre data-lines=\"39,49\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nint main() {\n    int x = 5;\n    int *ptr = &amp;x;\n    printf(&quot;Value of x: %d\\n&quot;, *ptr);\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"39,49"}}],"payload":{"tag":"h3","lines":"37,38"}},{"content":"Sample 2: Pointer as Function Argument","children":[{"content":"<pre data-lines=\"54,68\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nvoid addTen(int *num) {\n    *num += 10;\n}\n\nint main() {\n    int a = 5;\n    addTen(&amp;a);\n    printf(&quot;Updated a: %d\\n&quot;, a);\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"54,68"}}],"payload":{"tag":"h3","lines":"52,53"}},{"content":"Sample 3: Dynamic Memory Allocation","children":[{"content":"<pre data-lines=\"73,87\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;stdlib.h&gt;\n\nint main() {\n    int *arr = malloc(3 * sizeof(int));\n    for (int i = 0; i &lt; 3; i++) {\n        arr[i] = i + 1;\n        printf(&quot;%d &quot;, arr[i]);\n    }\n    free(arr);\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"73,87"}}],"payload":{"tag":"h3","lines":"71,72"}}],"payload":{"tag":"h2","lines":"35,36"}},{"content":"&#x26a0;&#xfe0f; Common Pointer Errors","children":[{"content":"Dereferencing uninitialized/null pointers: <code>*p</code> when <code>p</code> is not initialized","children":[],"payload":{"tag":"li","lines":"92,93"}},{"content":"Memory leaks: forgetting to <code>free()</code> dynamically allocated memory","children":[],"payload":{"tag":"li","lines":"93,94"}},{"content":"Dangling pointers: accessing memory after it&#x2019;s freed","children":[],"payload":{"tag":"li","lines":"94,95"}},{"content":"Pointer arithmetic mistakes (e.g., out-of-bounds access)","children":[],"payload":{"tag":"li","lines":"95,97"}}],"payload":{"tag":"h2","lines":"90,91"}},{"content":"&#x2705; Summary","children":[{"content":"<table data-lines=\"101,107\">\n<thead data-lines=\"101,102\">\n<tr data-lines=\"101,102\">\n<th>Concept</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody data-lines=\"103,107\">\n<tr data-lines=\"103,104\">\n<td><code>int *p</code></td>\n<td>Declare a pointer to int</td>\n</tr>\n<tr data-lines=\"104,105\">\n<td><code>&amp;x</code></td>\n<td>Address of variable <code>x</code></td>\n</tr>\n<tr data-lines=\"105,106\">\n<td><code>*p</code></td>\n<td>Value pointed by <code>p</code></td>\n</tr>\n<tr data-lines=\"106,107\">\n<td><code>malloc/free</code></td>\n<td>Allocate and deallocate memory</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"101,107"}}],"payload":{"tag":"h2","lines":"99,100"}}],"payload":{"tag":"h1","lines":"1,2"}},{})</script>
+</body>
+</html>
