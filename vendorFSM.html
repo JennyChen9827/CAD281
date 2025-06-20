@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"&#x1f964; FSM Vending Machine in C","children":[{"content":"&#x1f3af; Goal:","children":[{"content":"<pre data-lines=\"3,6\"><code data-lines=\"3,6\">Use `<span class=\"hljs-keyword\">enum</span>` <span class=\"hljs-literal\">and</span> <span class=\"hljs-keyword\">switch</span>-<span class=\"hljs-keyword\">case</span> <span class=\"hljs-keyword\">to</span> simulate a vending machine.\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"3,6"}}],"payload":{"tag":"h2","lines":"2,3"}},{"content":"&#x1f504; States","children":[{"content":"<pre data-lines=\"10,13\"><code class=\"language-c\">enum State { IDLE, SELECTION, PAYMENT, DISPENSE, EXIT };\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"10,13"}}],"payload":{"tag":"h2","lines":"8,9"}},{"content":"&#x1f527; How It Works","children":[{"content":"1. Start at <code>IDLE</code>","children":[],"payload":{"tag":"li","lines":"18,19","listIndex":1}},{"content":"2. User makes a selection &#x2192; <code>SELECTION</code>","children":[],"payload":{"tag":"li","lines":"19,20","listIndex":2}},{"content":"3. Insert money &#x2192; <code>PAYMENT</code>","children":[],"payload":{"tag":"li","lines":"20,21","listIndex":3}},{"content":"4. Dispense drink &#x2192; <code>DISPENSE</code>","children":[],"payload":{"tag":"li","lines":"21,22","listIndex":4}},{"content":"5. Loop or <code>EXIT</code>","children":[],"payload":{"tag":"li","lines":"22,24","listIndex":5}}],"payload":{"tag":"h2","lines":"16,17"}},{"content":"&#x2705; Sample Code","children":[{"content":"<pre data-lines=\"28,76\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nenum State { IDLE, SELECTION, PAYMENT, DISPENSE, EXIT };\n\nint main() {\n    enum State state = IDLE;\n    int money = 0, choice = 0;\n\n    while (state != EXIT) {\n        switch (state) {\n            case IDLE:\n                printf(&quot;Welcome to the Vending Machine!\\n&quot;);\n                state = SELECTION;\n                break;\n\n            case SELECTION:\n                printf(&quot;Choose a drink (1=Tea &#x24;2, 2=Coffee &#x24;3): &quot;);\n                scanf(&quot;%d&quot;, &amp;choice);\n                state = PAYMENT;\n                break;\n\n            case PAYMENT:\n                printf(&quot;Insert money: &quot;);\n                scanf(&quot;%d&quot;, &amp;money);\n                if ((choice == 1 &amp;&amp; money &gt;= 2) || (choice == 2 &amp;&amp; money &gt;= 3)) {\n                    state = DISPENSE;\n                } else {\n                    printf(&quot;Not enough money.\\n&quot;);\n                    state = EXIT;\n                }\n                break;\n\n            case DISPENSE:\n                if (choice == 1) printf(&quot;Dispensing Tea...\\n&quot;);\n                else if (choice == 2) printf(&quot;Dispensing Coffee...\\n&quot;);\n                state = EXIT;\n                break;\n\n            default:\n                state = EXIT;\n        }\n    }\n\n    printf(&quot;Thank you!\\n&quot;);\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"28,76"}}],"payload":{"tag":"h2","lines":"26,27"}},{"content":"&#x26a0;&#xfe0f; Common Mistakes","children":[{"content":"Forgetting <code>break;</code> in switch","children":[],"payload":{"tag":"li","lines":"81,82"}},{"content":"Skipping state transitions","children":[],"payload":{"tag":"li","lines":"82,83"}},{"content":"Infinite loops if <code>EXIT</code> never reached","children":[],"payload":{"tag":"li","lines":"83,84"}}],"payload":{"tag":"h2","lines":"79,80"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
