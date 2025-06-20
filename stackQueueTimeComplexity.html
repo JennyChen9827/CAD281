@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"Time Complexity of Stack and Queue Operations","children":[{"content":"&#x1f95e; Stack Operations","children":[{"content":"<table data-lines=\"6,12\">\n<thead data-lines=\"6,7\">\n<tr data-lines=\"6,7\">\n<th>Operation</th>\n<th>Description</th>\n<th>Time Complexity</th>\n</tr>\n</thead>\n<tbody data-lines=\"8,12\">\n<tr data-lines=\"8,9\">\n<td><code>push()</code></td>\n<td>Add element to top</td>\n<td>O(1)</td>\n</tr>\n<tr data-lines=\"9,10\">\n<td><code>pop()</code></td>\n<td>Remove element from top</td>\n<td>O(1)</td>\n</tr>\n<tr data-lines=\"10,11\">\n<td><code>peek()</code> / <code>top()</code></td>\n<td>View element at top</td>\n<td>O(1)</td>\n</tr>\n<tr data-lines=\"11,12\">\n<td><code>isEmpty()</code></td>\n<td>Check if stack is empty</td>\n<td>O(1)</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"6,12"}}],"payload":{"tag":"h2","lines":"4,5"}},{"content":"&#x1f4e5; Queue Operations","children":[{"content":"<table data-lines=\"15,21\">\n<thead data-lines=\"15,16\">\n<tr data-lines=\"15,16\">\n<th>Operation</th>\n<th>Description</th>\n<th>Time Complexity</th>\n</tr>\n</thead>\n<tbody data-lines=\"17,21\">\n<tr data-lines=\"17,18\">\n<td><code>enqueue()</code></td>\n<td>Add element to rear</td>\n<td>O(1)</td>\n</tr>\n<tr data-lines=\"18,19\">\n<td><code>dequeue()</code></td>\n<td>Remove element from front</td>\n<td>O(1)</td>\n</tr>\n<tr data-lines=\"19,20\">\n<td><code>front()</code></td>\n<td>View element at front</td>\n<td>O(1)</td>\n</tr>\n<tr data-lines=\"20,21\">\n<td><code>isEmpty()</code></td>\n<td>Check if queue is empty</td>\n<td>O(1)</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"15,21"}}],"payload":{"tag":"h2","lines":"13,14"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
