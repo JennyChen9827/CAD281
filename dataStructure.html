@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"&#x1f4da; Data Structures in C &#x2013; Simple Guide","children":[{"content":"&#x1f9e0; What Is a Data Structure?","children":[{"content":"<pre data-lines=\"3,11\"><code data-lines=\"3,11\">A <span class=\"hljs-built_in\">data</span> structure** is a way <span class=\"hljs-keyword\">to</span> store, organize, <span class=\"hljs-literal\">and</span> manage <span class=\"hljs-built_in\">data</span>** efficiently.\n\n<span class=\"hljs-keyword\">In</span> C, common <span class=\"hljs-built_in\">data</span> structures include:\n- Built<span class=\"hljs-params\">-in</span>: arrays, pointers\n- User<span class=\"hljs-params\">-defined</span>: <span class=\"hljs-string\">`struct`</span>, <span class=\"hljs-string\">`union`</span>, <span class=\"hljs-string\">`enum`</span>\n- Abstract types: <span class=\"hljs-built_in\">stack</span>, <span class=\"hljs-built_in\">queue</span>, linked <span class=\"hljs-built_in\">list</span>\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"3,11"}}],"payload":{"tag":"h2","lines":"2,3"}},{"content":"&#x2753; Why Use Data Structures?","children":[{"content":"Group related data (e.g., student info)","children":[],"payload":{"tag":"li","lines":"15,16"}},{"content":"Perform efficient operations (insert, search, delete)","children":[],"payload":{"tag":"li","lines":"16,17"}},{"content":"Represent real-world scenarios (queues, trees, graphs)","children":[],"payload":{"tag":"li","lines":"17,19"}}],"payload":{"tag":"h2","lines":"13,14"}},{"content":"&#x23f0; When to Use Data Structures?","children":[{"content":"To store multiple values or objects","children":[],"payload":{"tag":"li","lines":"23,24"}},{"content":"When data has logical relationships","children":[],"payload":{"tag":"li","lines":"24,25"}},{"content":"When performance matters","children":[],"payload":{"tag":"li","lines":"25,27"}}],"payload":{"tag":"h2","lines":"21,22"}},{"content":"&#x2699;&#xfe0f; How to Use Data Structures in C?","children":[{"content":"Use <code>struct</code> to group multiple variables","children":[],"payload":{"tag":"li","lines":"31,32"}},{"content":"Use <code>enum</code> to assign symbolic names to integer constants","children":[],"payload":{"tag":"li","lines":"32,33"}},{"content":"Use pointers for dynamic allocation","children":[],"payload":{"tag":"li","lines":"33,34"}},{"content":"Combine with arrays and functions to create complex behaviors","children":[],"payload":{"tag":"li","lines":"34,36"}}],"payload":{"tag":"h2","lines":"29,30"}},{"content":"&#x2705; Sample 1: <code>struct</code> to store student info","children":[{"content":"<pre data-lines=\"40,47\"><code class=\"language-c\">typedef struct {\n    int id;\n    char name[50];\n    float gpa;\n} Student;\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"40,47"}}],"payload":{"tag":"h2","lines":"38,39"}},{"content":"&#x2705; Sample 2: Linked List Node","children":[{"content":"<pre data-lines=\"52,58\"><code class=\"language-c\">typedef struct Node {\n    int data;\n    struct Node* next;\n} Node;\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"52,58"}}],"payload":{"tag":"h2","lines":"50,51"}},{"content":"&#x2705; Sample 3: <code>enum</code> for status values","children":[{"content":"<pre data-lines=\"63,72\"><code class=\"language-c\">enum Status { SUCCESS, FAIL, PENDING };\n\nint main() {\n    enum Status s = SUCCESS;\n    if (s == SUCCESS) printf(&quot;All good!\\n&quot;);\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"63,72"}}],"payload":{"tag":"h2","lines":"61,62"}},{"content":"&#x26a0;&#xfe0f; Common Errors with Data Structures","children":[{"content":"<table data-lines=\"77,83\">\n<thead data-lines=\"77,78\">\n<tr data-lines=\"77,78\">\n<th>Mistake</th>\n<th>Why it&apos;s wrong</th>\n</tr>\n</thead>\n<tbody data-lines=\"79,83\">\n<tr data-lines=\"79,80\">\n<td>Not using <code>free()</code></td>\n<td>Causes memory leaks</td>\n</tr>\n<tr data-lines=\"80,81\">\n<td>Uninitialized pointers</td>\n<td>Crash/segfault</td>\n</tr>\n<tr data-lines=\"81,82\">\n<td>Wrong array index</td>\n<td>Undefined behavior</td>\n</tr>\n<tr data-lines=\"82,83\">\n<td>Forgetting <code>break</code> in <code>enum</code>-based <code>switch</code></td>\n<td>Logic bugs</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"77,83"}}],"payload":{"tag":"h2","lines":"75,76"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
