@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"&#x1f9e0; malloc in C &#x2013; Simple Guide","children":[{"content":"&#x1f4cc; What is <code>malloc</code>?","children":[{"content":"<pre data-lines=\"3,6\"><code data-lines=\"3,6\">`malloc` (memory allocation) <span class=\"hljs-keyword\">is</span> a <span class=\"hljs-keyword\">function</span> <span class=\"hljs-keyword\">in</span> C used <span class=\"hljs-keyword\">to</span> **dynamically allocate memory** <span class=\"hljs-keyword\">from</span> the heap during runtime.\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"3,6"}}],"payload":{"tag":"h2","lines":"2,3"}},{"content":"&#x2753; Why use <code>malloc</code>?","children":[{"content":"You <strong>don&#x2019;t know the size</strong> of data at compile time","children":[],"payload":{"tag":"li","lines":"9,10"}},{"content":"You want to <strong>allocate memory only when needed</strong>","children":[],"payload":{"tag":"li","lines":"10,11"}},{"content":"Useful for flexible arrays or structures","children":[],"payload":{"tag":"li","lines":"11,13"}}],"payload":{"tag":"h2","lines":"8,9"}},{"content":"&#x1f4cd; Where is the memory allocated?","children":[{"content":"From the <strong>heap</strong> (not the stack)","children":[],"payload":{"tag":"li","lines":"16,17"}},{"content":"Returns a pointer to the beginning of the block","children":[],"payload":{"tag":"li","lines":"17,19"}}],"payload":{"tag":"h2","lines":"15,16"}},{"content":"&#x23f0; When to use <code>malloc</code>?","children":[{"content":"Size unknown at compile time","children":[],"payload":{"tag":"li","lines":"22,23"}},{"content":"Data needs to persist outside a function","children":[],"payload":{"tag":"li","lines":"23,24"}},{"content":"For dynamic structures (linked lists, trees, etc.)","children":[],"payload":{"tag":"li","lines":"24,26"}}],"payload":{"tag":"h2","lines":"21,22"}},{"content":"&#x2699;&#xfe0f; How to use <code>malloc</code>?","children":[{"content":"<pre data-lines=\"29,32\"><code class=\"language-c\">int* ptr = (int*)malloc(5 * sizeof(int));\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"29,32"}}],"payload":{"tag":"h2","lines":"28,29"}},{"content":"&#x2705; Sample 1: Allocate array","children":[{"content":"<pre data-lines=\"40,46\"><code class=\"language-c\">int* nums = (int*)malloc(5 * sizeof(int));\nif (nums == NULL) return 1;\n// use nums[0] ~ nums[4]\nfree(nums);\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"40,46"}}],"payload":{"tag":"h2","lines":"39,40"}},{"content":"&#x2705; Sample 2: Allocate for string","children":[{"content":"<pre data-lines=\"50,55\"><code class=\"language-c\">char* name = (char*)malloc(20 * sizeof(char));\nstrcpy(name, &quot;Jenny&quot;);\nfree(name);\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"50,55"}}],"payload":{"tag":"h2","lines":"49,50"}},{"content":"&#x2705; Sample 3: Allocate struct","children":[{"content":"<pre data-lines=\"59,65\"><code class=\"language-c\">typedef struct { int id; char grade; } Student;\nStudent* s = (Student*)malloc(sizeof(Student));\ns-&gt;id = 123; s-&gt;grade = &apos;A&apos;;\nfree(s);\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"59,65"}}],"payload":{"tag":"h2","lines":"58,59"}},{"content":"&#x26a0;&#xfe0f; Common Errors","children":[{"content":"<table data-lines=\"70,76\">\n<thead data-lines=\"70,71\">\n<tr data-lines=\"70,71\">\n<th>Mistake</th>\n<th>Why it&apos;s wrong</th>\n</tr>\n</thead>\n<tbody data-lines=\"72,76\">\n<tr data-lines=\"72,73\">\n<td>Forgetting <code>free()</code></td>\n<td>Memory leak</td>\n</tr>\n<tr data-lines=\"73,74\">\n<td>Not checking <code>NULL</code></td>\n<td>May crash</td>\n</tr>\n<tr data-lines=\"74,75\">\n<td>Using <code>sizeof(ptr)</code></td>\n<td>Allocates wrong size</td>\n</tr>\n<tr data-lines=\"75,76\">\n<td>Access out of bounds</td>\n<td>Undefined behavior</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"70,76"}}],"payload":{"tag":"h2","lines":"68,69"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
