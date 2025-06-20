@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"&#x1f9f1; ADT in C &#x2013; Explained Simply","children":[{"content":"&#x1f4cc; What is ADT?","children":[{"content":"<pre data-lines=\"3,7\"><code data-lines=\"3,7\">\nAn Abstract Data Type (ADT)** <span class=\"hljs-keyword\">is</span> a way <span class=\"hljs-keyword\">to</span> define what a data structure <span class=\"hljs-keyword\">does</span>, <span class=\"hljs-keyword\">without</span> saying how <span class=\"hljs-keyword\">it</span> <span class=\"hljs-keyword\">does</span> <span class=\"hljs-keyword\">it</span>. It hides implementation <span class=\"hljs-keyword\">and</span> shows only behavior.\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"3,7"}}],"payload":{"tag":"h2","lines":"2,3"}},{"content":"&#x2753; Why Use ADT?","children":[{"content":"Makes code modular and clean","children":[],"payload":{"tag":"li","lines":"11,12"}},{"content":"You can change the implementation without affecting the rest of the program","children":[],"payload":{"tag":"li","lines":"12,13"}},{"content":"Useful in teams and large projects","children":[],"payload":{"tag":"li","lines":"13,15"}}],"payload":{"tag":"h2","lines":"9,10"}},{"content":"&#x1f4cd; Where Is It Used?","children":[{"content":"In reusable modules like Stack, Queue, List","children":[],"payload":{"tag":"li","lines":"19,20"}},{"content":"In libraries and embedded systems","children":[],"payload":{"tag":"li","lines":"20,21"}},{"content":"In projects that require clean separation of logic","children":[],"payload":{"tag":"li","lines":"21,23"}}],"payload":{"tag":"h2","lines":"17,18"}},{"content":"&#x23f0; When to Use ADT?","children":[{"content":"When the structure or behavior might change later","children":[],"payload":{"tag":"li","lines":"27,28"}},{"content":"When you want to separate usage from internal logic","children":[],"payload":{"tag":"li","lines":"28,29"}},{"content":"When designing general-purpose code","children":[],"payload":{"tag":"li","lines":"29,31"}}],"payload":{"tag":"h2","lines":"25,26"}},{"content":"&#x2699;&#xfe0f; How to Use ADT in C?","children":[{"content":"<code>struct</code> to define data","children":[],"payload":{"tag":"li","lines":"36,37"}},{"content":"Header file (<code>.h</code>) for function declarations","children":[],"payload":{"tag":"li","lines":"37,38"}},{"content":"C file (<code>.c</code>) for implementation","children":[],"payload":{"tag":"li","lines":"38,40"}}],"payload":{"tag":"h2","lines":"33,34"}},{"content":"&#x2705; Stack ADT Using Array","children":[{"content":"<code>stack.h</code>","children":[{"content":"<pre data-lines=\"45,64\"><code class=\"language-c\">#ifndef STACK_H\n#define STACK_H\n\n#define SIZE 100\n\ntypedef struct {\n    int data[SIZE];\n    int top;\n} Stack;\n\nvoid initStack(Stack* s);\nint isStackEmpty(Stack* s);\nvoid push(Stack* s, int val);\nint pop(Stack* s);\nint peek(Stack* s);\n\n#endif\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"45,64"}}],"payload":{"tag":"h3","lines":"44,45"}},{"content":"<code>stack.c</code>","children":[{"content":"<pre data-lines=\"66,97\"><code class=\"language-c\">#include &quot;stack.h&quot;\n\nvoid initStack(Stack* s) {\n    s-&gt;top = -1;\n}\n\nint isStackEmpty(Stack* s) {\n    return s-&gt;top == -1;\n}\n\nvoid push(Stack* s, int val) {\n    if (s-&gt;top &lt; SIZE - 1) {\n        s-&gt;data[++(s-&gt;top)] = val;\n    }\n}\n\nint pop(Stack* s) {\n    if (!isStackEmpty(s)) {\n        return s-&gt;data[(s-&gt;top)--];\n    }\n    return -1;\n}\n\nint peek(Stack* s) {\n    if (!isStackEmpty(s)) {\n        return s-&gt;data[s-&gt;top];\n    }\n    return -1;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"66,97"}}],"payload":{"tag":"h3","lines":"65,66"}}],"payload":{"tag":"h2","lines":"42,43"}},{"content":"&#x2705; Queue ADT Using Array","children":[{"content":"<code>queue.h</code>","children":[{"content":"<pre data-lines=\"103,123\"><code class=\"language-c\">#ifndef QUEUE_H\n#define QUEUE_H\n\n#define QSIZE 100\n\ntypedef struct {\n    int data[QSIZE];\n    int front, rear, count;\n} Queue;\n\nvoid initQueue(Queue* q);\nint isQueueEmpty(Queue* q);\nint isQueueFull(Queue* q);\nvoid enqueue(Queue* q, int val);\nint dequeue(Queue* q);\nint frontValue(Queue* q);\n\n#endif\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"103,123"}}],"payload":{"tag":"h3","lines":"102,103"}},{"content":"<code>queue.c</code>","children":[{"content":"<pre data-lines=\"125,167\"><code class=\"language-c\">#include &quot;queue.h&quot;\n\nvoid initQueue(Queue* q) {\n    q-&gt;front = 0;\n    q-&gt;rear = -1;\n    q-&gt;count = 0;\n}\n\nint isQueueEmpty(Queue* q) {\n    return q-&gt;count == 0;\n}\n\nint isQueueFull(Queue* q) {\n    return q-&gt;count == QSIZE;\n}\n\nvoid enqueue(Queue* q, int val) {\n    if (!isQueueFull(q)) {\n        q-&gt;rear = (q-&gt;rear + 1) % QSIZE;\n        q-&gt;data[q-&gt;rear] = val;\n        q-&gt;count++;\n    }\n}\n\nint dequeue(Queue* q) {\n    if (!isQueueEmpty(q)) {\n        int val = q-&gt;data[q-&gt;front];\n        q-&gt;front = (q-&gt;front + 1) % QSIZE;\n        q-&gt;count--;\n        return val;\n    }\n    return -1;\n}\n\nint frontValue(Queue* q) {\n    if (!isQueueEmpty(q)) {\n        return q-&gt;data[q-&gt;front];\n    }\n    return -1;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"125,167"}}],"payload":{"tag":"h3","lines":"124,125"}}],"payload":{"tag":"h2","lines":"100,101"}},{"content":"&#x26a0;&#xfe0f; Common Errors","children":[{"content":"<table data-lines=\"172,178\">\n<thead data-lines=\"172,173\">\n<tr data-lines=\"172,173\">\n<th>Mistake</th>\n<th>Why It&#x2019;s Wrong</th>\n</tr>\n</thead>\n<tbody data-lines=\"174,178\">\n<tr data-lines=\"174,175\">\n<td>Not calling init function</td>\n<td>Values are uninitialized</td>\n</tr>\n<tr data-lines=\"175,176\">\n<td>Forgetting array bounds</td>\n<td>Causes overflow/bugs</td>\n</tr>\n<tr data-lines=\"176,177\">\n<td>Using wrong type (e.g., <code>int</code> instead of <code>Stack*</code>)</td>\n<td>No real effect on original data</td>\n</tr>\n<tr data-lines=\"177,178\">\n<td>No return checks</td>\n<td>May silently fail or crash</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"172,178"}}],"payload":{"tag":"h2","lines":"170,171"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
