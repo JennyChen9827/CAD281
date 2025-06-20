@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"","children":[{"content":"&#x1f9f1; Basic Data Types in C","children":[{"content":"<pre data-lines=\"1,4\"><code data-lines=\"1,4\">C provides a <span class=\"hljs-built_in\">set</span> of basic <span class=\"hljs-built_in\">data</span> types <span class=\"hljs-keyword\">to</span> store different kinds of <span class=\"hljs-built_in\">data</span>. These are especially important when working <span class=\"hljs-keyword\">with</span> memory<span class=\"hljs-params\">-limited</span> embedded systems**.\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"1,4"}},{"content":"<table data-lines=\"4,10\">\n<thead data-lines=\"4,5\">\n<tr data-lines=\"4,5\">\n<th>Data Type</th>\n<th>Size</th>\n<th>Description</th>\n<th>Example</th>\n<th>Min &#x2013; Max (32/64-bit)</th>\n</tr>\n</thead>\n<tbody data-lines=\"6,10\">\n<tr data-lines=\"6,7\">\n<td><code>int</code></td>\n<td>4 B</td>\n<td>Whole numbers (no decimal)</td>\n<td><code>int x = 1;</code></td>\n<td>&#x2212;2,147,483,648 to 2,147,483,647</td>\n</tr>\n<tr data-lines=\"7,8\">\n<td><code>float</code></td>\n<td>4 B</td>\n<td>Decimal numbers, ~6&#x2013;7 digits precision</td>\n<td><code>float f = 1.99;</code></td>\n<td>~1.2&#xd7;10&#x207b;&#xb3;&#x2078; to ~3.4&#xd7;10&#xb3;&#x2078;</td>\n</tr>\n<tr data-lines=\"8,9\">\n<td><code>double</code></td>\n<td>8 B</td>\n<td>Decimal numbers, up to 15 digits precision</td>\n<td><code>double d = 1.99;</code></td>\n<td>~2.3&#xd7;10&#x207b;&#xb3;&#x2070;&#x2078; to ~1.7&#xd7;10&#xb3;&#x2070;&#x2078;</td>\n</tr>\n<tr data-lines=\"9,10\">\n<td><code>char</code></td>\n<td>1 B</td>\n<td>Single character (ASCII)</td>\n<td><code>char c = &apos;A&apos;;</code></td>\n<td>0 to 255 (unsigned), &#x2212;128 to 127 (signed)</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"4,10"}}],"payload":{"tag":"h1","lines":"0,1"}},{"content":"&#x23f1;&#xfe0f; Time &amp; &#x1f4be; Space Complexity (Intro)","children":[{"content":"What Is Big O Notation?","children":[{"content":"<table data-lines=\"22,26\">\n<thead data-lines=\"22,23\">\n<tr data-lines=\"22,23\">\n<th>Question</th>\n<th>Complexity Type</th>\n</tr>\n</thead>\n<tbody data-lines=\"24,26\">\n<tr data-lines=\"24,25\">\n<td>How fast does it run?</td>\n<td><strong>Time Complexity</strong></td>\n</tr>\n<tr data-lines=\"25,26\">\n<td>How much memory does it use?</td>\n<td><strong>Space Complexity</strong></td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"22,26"}}],"payload":{"tag":"h2","lines":"17,18"}},{"content":"&#x23f1;&#xfe0f; Common Time Complexities","children":[{"content":"<table data-lines=\"31,39\">\n<thead data-lines=\"31,32\">\n<tr data-lines=\"31,32\">\n<th>Big O</th>\n<th>Name</th>\n<th>Description</th>\n<th>C Example</th>\n</tr>\n</thead>\n<tbody data-lines=\"33,39\">\n<tr data-lines=\"33,34\">\n<td><code>O(1)</code></td>\n<td>Constant Time</td>\n<td>Same time no matter input size</td>\n<td><code>x = a + b;</code></td>\n</tr>\n<tr data-lines=\"34,35\">\n<td><code>O(log n)</code></td>\n<td>Logarithmic Time</td>\n<td>Cuts input in half each time</td>\n<td>Binary Search</td>\n</tr>\n<tr data-lines=\"35,36\">\n<td><code>O(n)</code></td>\n<td>Linear Time</td>\n<td>Grows with input size</td>\n<td><code>for (i = 0; i &lt; n; i++)</code></td>\n</tr>\n<tr data-lines=\"36,37\">\n<td><code>O(n log n)</code></td>\n<td>Linearithmic Time</td>\n<td>Efficient sorting</td>\n<td>Merge Sort, Quick Sort</td>\n</tr>\n<tr data-lines=\"37,38\">\n<td><code>O(n&#xb2;)</code></td>\n<td>Quadratic Time</td>\n<td>Bad for large inputs</td>\n<td>Nested loops (Bubble Sort)</td>\n</tr>\n<tr data-lines=\"38,39\">\n<td><code>O(2&#x207f;)</code></td>\n<td>Exponential Time</td>\n<td>Very slow</td>\n<td>Recursive Fibonacci</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"31,39"}}],"payload":{"tag":"h2","lines":"29,30"}},{"content":"&#x1f4be; Common Space Complexities","children":[{"content":"<table data-lines=\"44,49\">\n<thead data-lines=\"44,45\">\n<tr data-lines=\"44,45\">\n<th>Big O</th>\n<th>Name</th>\n<th>Description</th>\n<th>Example</th>\n</tr>\n</thead>\n<tbody data-lines=\"46,49\">\n<tr data-lines=\"46,47\">\n<td><code>O(1)</code></td>\n<td>Constant Space</td>\n<td>Uses fixed memory</td>\n<td>Only a few variables</td>\n</tr>\n<tr data-lines=\"47,48\">\n<td><code>O(n)</code></td>\n<td>Linear Space</td>\n<td>Memory grows with input size</td>\n<td>Creating an array of size <code>n</code></td>\n</tr>\n<tr data-lines=\"48,49\">\n<td><code>O(n&#xb2;)</code></td>\n<td>Quadratic Space</td>\n<td>Memory grows rapidly with input size</td>\n<td>2D matrices</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"44,49"}}],"payload":{"tag":"h2","lines":"42,43"}},{"content":"Why It Matters","children":[{"content":"Saves time and memory in embedded applications","children":[],"payload":{"tag":"li","lines":"54,55"}},{"content":"Essential when processing large data","children":[],"payload":{"tag":"li","lines":"55,56"}},{"content":"Required in <strong>tech interviews and industry projects</strong>","children":[],"payload":{"tag":"li","lines":"56,58"}}],"payload":{"tag":"h2","lines":"52,53"}},{"content":"Tips for Students","children":[{"content":"Ask: <strong>How many loops? Any nested loops?</strong>","children":[],"payload":{"tag":"li","lines":"62,63"}},{"content":"Avoid creating unnecessary arrays or variables","children":[],"payload":{"tag":"li","lines":"63,64"}},{"content":"Always try to reduce <strong>both time and space usage</strong>","children":[],"payload":{"tag":"li","lines":"64,65"}}],"payload":{"tag":"h2","lines":"60,61"}}],"payload":{"tag":"h1","lines":"13,14"}}]},{})</script>
+</body>
+</html>
