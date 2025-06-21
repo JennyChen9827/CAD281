@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"&#x1f964; FSM Vending Machine in C (Table-Driven)","children":[{"content":"&#x1f3af; Goal:","children":[{"content":"<pre data-lines=\"4,7\"><code data-lines=\"4,7\">Use <span class=\"hljs-keyword\">state</span> and output tables** <span class=\"hljs-keyword\">to</span> simulate a simple vending machine using a classic Mealy finite <span class=\"hljs-keyword\">state</span> machine** (FSM) approach.\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"4,7"}}],"payload":{"tag":"h2","lines":"3,4"}},{"content":"States (Money Inserted)","children":[{"content":"<pre data-lines=\"11,17\"><code class=\"language-c\">0 = Start (no money)  \n1 = Has &#x24;1  \n2 = Has &#x24;2  \n3 = Has &#x24;3+\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"11,17"}}],"payload":{"tag":"h2","lines":"9,10"}},{"content":"Inputs","children":[{"content":"<pre data-lines=\"22,29\"><code class=\"language-c\">0 = Insert &#x24;1  \n1 = Select Tea (&#x24;2)  \n2 = Select Coffee (&#x24;3)  \n3 = Cancel/Return money  \n4 = Exit\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"22,29"}}],"payload":{"tag":"h2","lines":"20,21"}},{"content":"State Transition Table","children":[{"content":"<table data-lines=\"34,40\">\n<thead data-lines=\"34,35\">\n<tr data-lines=\"34,35\">\n<th>Current State</th>\n<th>Insert&#x24;1</th>\n<th>Tea</th>\n<th>Coffee</th>\n<th>Cancel</th>\n</tr>\n</thead>\n<tbody data-lines=\"36,40\">\n<tr data-lines=\"36,37\">\n<td>0 (Start)</td>\n<td>1</td>\n<td>0</td>\n<td>0</td>\n<td>0</td>\n</tr>\n<tr data-lines=\"37,38\">\n<td>1 (Has &#x24;1)</td>\n<td>2</td>\n<td>0</td>\n<td>0</td>\n<td>0</td>\n</tr>\n<tr data-lines=\"38,39\">\n<td>2 (Has &#x24;2)</td>\n<td>3</td>\n<td>0</td>\n<td>0</td>\n<td>0</td>\n</tr>\n<tr data-lines=\"39,40\">\n<td>3 (Has &#x24;3+)</td>\n<td>3</td>\n<td>0</td>\n<td>0</td>\n<td>0</td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"34,40"}}],"payload":{"tag":"h2","lines":"32,33"}},{"content":"Output Table","children":[{"content":"Output Codes:","children":[{"content":"0 = Do nothing","children":[],"payload":{"tag":"li","lines":"53,54"}},{"content":"1 = Dispense Tea","children":[],"payload":{"tag":"li","lines":"54,55"}},{"content":"2 = Dispense Coffee","children":[],"payload":{"tag":"li","lines":"55,56"}},{"content":"3 = Return money","children":[],"payload":{"tag":"li","lines":"56,57"}},{"content":"4 = Need more money","children":[],"payload":{"tag":"li","lines":"57,59"}}],"payload":{"tag":"h3","lines":"52,53"}}],"payload":{"tag":"h2","lines":"43,44"}},{"content":"Core Logic (Simplified Flow)","children":[{"content":"<pre data-lines=\"63,75\"><code class=\"language-c\">int current_state = 0;\nwhile (1) {\n    print current state;\n    get user input;\n    if input == 4: break;\n    output = output_table[current_state][input];\n    next_state = state_table[current_state][input];\n    act on output;\n    update state and money;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"63,75"}}],"payload":{"tag":"h2","lines":"61,62"}},{"content":"Features","children":[{"content":"Table-driven FSM (Mealy machine)","children":[],"payload":{"tag":"li","lines":"80,81"}},{"content":"Clear separation of <strong>states</strong>, <strong>inputs</strong>, <strong>transitions</strong>, and <strong>outputs</strong>","children":[],"payload":{"tag":"li","lines":"81,82"}},{"content":"Easy to extend for more drinks or bills","children":[],"payload":{"tag":"li","lines":"82,84"}}],"payload":{"tag":"h2","lines":"78,79"}},{"content":"&#x26a0;&#xfe0f; Common Mistakes","children":[{"content":"Not updating state or money properly","children":[],"payload":{"tag":"li","lines":"88,89"}},{"content":"Not handling reset after dispensing or cancel","children":[],"payload":{"tag":"li","lines":"89,90"}},{"content":"Input out of range (use input validation)","children":[],"payload":{"tag":"li","lines":"90,91"}}],"payload":{"tag":"h2","lines":"86,87"}}],"payload":{"tag":"h1","lines":"1,2"}},{})</script>
+</body>
+</html>
