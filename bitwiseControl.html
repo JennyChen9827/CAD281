@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"ESE 124: Introduction to C Programming Core Concepts","children":[{"content":"1. Operations: The Verbs of Programming","children":[{"content":"Arithmetic and Assignment Operators","children":[{"content":"<pre data-lines=\"10,30\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nint main() {\n    int a = 10, b = 3;\n\n    int sum = a + b;\n    int product = a * b;\n    int remainder = a % b;\n\n    a += 2; // same as a = a + 2\n\n    printf(&quot;Sum: %d\\n&quot;, sum);\n    printf(&quot;Product: %d\\n&quot;, product);\n    printf(&quot;Remainder: %d\\n&quot;, remainder);\n    printf(&quot;New value of a: %d\\n&quot;, a);\n\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"10,30"}}],"payload":{"tag":"h3","lines":"8,9"}}],"payload":{"tag":"h2","lines":"6,7"}},{"content":"2A. Bitwise Operations: Controlling Individual Bits","children":[{"content":"<pre data-lines=\"35,52\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nint main() {\n    unsigned char x = 5;  // 00000101\n    unsigned char y = 9;  // 00001001\n\n    printf(&quot;x &amp; y = %d\\n&quot;, x &amp; y); // 00000001 = 1\n    printf(&quot;x | y = %d\\n&quot;, x | y); // 00001101 = 13\n    printf(&quot;x ^ y = %d\\n&quot;, x ^ y); // 00001100 = 12\n    printf(&quot;~x = %d\\n&quot;, (unsigned char)~x); // Bitwise NOT\n    printf(&quot;x &lt;&lt; 1 = %d\\n&quot;, x &lt;&lt; 1); // 00001010 = 10\n    printf(&quot;x &gt;&gt; 1 = %d\\n&quot;, x &gt;&gt; 1); // 00000010 = 2\n\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"35,52"}}],"payload":{"tag":"h2","lines":"33,34"}},{"content":"2B. Bitwise Operation Manipulation","children":[{"content":"<pre data-lines=\"55,86\"><code data-lines=\"55,86\"><span class=\"hljs-meta\">#<span class=\"hljs-keyword\">include</span> <span class=\"hljs-string\">&lt;stdio.h&gt;</span></span>\n\n<span class=\"hljs-function\"><span class=\"hljs-type\">int</span> <span class=\"hljs-title\">main</span><span class=\"hljs-params\">()</span> </span>{\n    <span class=\"hljs-type\">unsigned</span> <span class=\"hljs-type\">char</span> a = <span class=\"hljs-number\">5</span>;  <span class=\"hljs-comment\">// Binary: 00000101</span>\n    <span class=\"hljs-type\">unsigned</span> <span class=\"hljs-type\">char</span> b = <span class=\"hljs-number\">9</span>;  <span class=\"hljs-comment\">// Binary: 00001001</span>\n\n    <span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">&quot;a = %d (binary 00000101)\\n&quot;</span>, a);\n    <span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">&quot;b = %d (binary 00001001)\\n&quot;</span>, b);\n\n    <span class=\"hljs-comment\">// Bitwise AND</span>\n    <span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">&quot;a &amp; b = %d\\n&quot;</span>, a &amp; b);  <span class=\"hljs-comment\">// 00000001 = 1</span>\n\n    <span class=\"hljs-comment\">// Bitwise OR</span>\n    <span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">&quot;a | b = %d\\n&quot;</span>, a | b);  <span class=\"hljs-comment\">// 00001101 = 13</span>\n\n    <span class=\"hljs-comment\">// Bitwise XOR</span>\n    <span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">&quot;a ^ b = %d\\n&quot;</span>, a ^ b);  <span class=\"hljs-comment\">// 00001100 = 12</span>\n\n    <span class=\"hljs-comment\">// Bitwise NOT</span>\n    <span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">&quot;~a = %d\\n&quot;</span>, (<span class=\"hljs-type\">unsigned</span> <span class=\"hljs-type\">char</span>) ~a);  <span class=\"hljs-comment\">// 11111010 = 250 (in unsigned)</span>\n\n    <span class=\"hljs-comment\">// Left Shift</span>\n    <span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">&quot;a &lt;&lt; 1 = %d\\n&quot;</span>, a &lt;&lt; <span class=\"hljs-number\">1</span>);  <span class=\"hljs-comment\">// 00001010 = 10</span>\n\n    <span class=\"hljs-comment\">// Right Shift</span>\n    <span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">&quot;a &gt;&gt; 1 = %d\\n&quot;</span>, a &gt;&gt; <span class=\"hljs-number\">1</span>);  <span class=\"hljs-comment\">// 00000010 = 2</span>\n\n    <span class=\"hljs-keyword\">return</span> <span class=\"hljs-number\">0</span>;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"55,86"}}],"payload":{"tag":"h2","lines":"54,55"}},{"content":"3. ASCII Values: The Secret Numbers Behind Characters","children":[{"content":"<pre data-lines=\"90,106\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nint main() {\n    char ch = &apos;a&apos;;\n\n    printf(&quot;ASCII of &apos;%c&apos; is %d\\n&quot;, ch, ch);\n\n    if (ch &gt;= &apos;a&apos; &amp;&amp; ch &lt;= &apos;z&apos;) {\n        char upper = ch - 32;\n        printf(&quot;Uppercase: %c\\n&quot;, upper);\n    }\n\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"90,106"}}],"payload":{"tag":"h2","lines":"88,89"}},{"content":"4. Control Statements: Making Programs Think","children":[{"content":"Decision-Making: if / else / switch","children":[{"content":"<pre data-lines=\"113,136\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nint main() {\n    int grade = 85;\n\n    if (grade &gt;= 90) {\n        printf(&quot;A - Great job!\\n&quot;);\n    } else if (grade &gt;= 80) {\n        printf(&quot;B - Good effort!\\n&quot;);\n    } else {\n        printf(&quot;Keep trying!\\n&quot;);\n    }\n\n    switch (grade / 10) {\n        case 9: printf(&quot;You got an A range!\\n&quot;); break;\n        case 8: printf(&quot;You got a B range!\\n&quot;); break;\n        default: printf(&quot;Below B range.\\n&quot;); break;\n    }\n\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"113,136"}}],"payload":{"tag":"h3","lines":"111,112"}},{"content":"Repetition: for / while / do-while loops","children":[{"content":"<pre data-lines=\"139,165\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nint main() {\n    // for loop\n    for (int i = 0; i &lt; 3; i++) {\n        printf(&quot;for loop i = %d\\n&quot;, i);\n    }\n\n    // while loop\n    int j = 0;\n    while (j &lt; 3) {\n        printf(&quot;while loop j = %d\\n&quot;, j);\n        j++;\n    }\n\n    // do-while loop\n    int k = 0;\n    do {\n        printf(&quot;do-while loop k = %d\\n&quot;, k);\n        k++;\n    } while (k &lt; 3);\n\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"139,165"}}],"payload":{"tag":"h3","lines":"137,138"}}],"payload":{"tag":"h2","lines":"109,110"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
