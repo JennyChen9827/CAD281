@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"Week 2: C Programming &#x2013; Functions and Taylor Series","children":[{"content":"Topic 1: What Is a Function in C?","children":[{"content":"<pre data-lines=\"8,29\"><code data-lines=\"8,29\">Functions help us organize reusable blocks of code.\n\nSimple Example: Add Two Numbers\n\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">include</span> <span class=\"hljs-string\">&lt;stdio.h&gt;</span></span>\n\n<span class=\"hljs-comment\">// Function declaration</span>\n<span class=\"hljs-function\"><span class=\"hljs-type\">int</span> <span class=\"hljs-title\">add</span><span class=\"hljs-params\">(<span class=\"hljs-type\">int</span> a, <span class=\"hljs-type\">int</span> b)</span></span>;\n\n<span class=\"hljs-function\"><span class=\"hljs-type\">int</span> <span class=\"hljs-title\">main</span><span class=\"hljs-params\">()</span> </span>{\n    <span class=\"hljs-type\">int</span> result = <span class=\"hljs-built_in\">add</span>(<span class=\"hljs-number\">5</span>, <span class=\"hljs-number\">3</span>);\n    <span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">&quot;The sum is %d\\n&quot;</span>, result);\n    <span class=\"hljs-keyword\">return</span> <span class=\"hljs-number\">0</span>;\n}\n\n<span class=\"hljs-comment\">// Function definition</span>\n<span class=\"hljs-function\"><span class=\"hljs-type\">int</span> <span class=\"hljs-title\">add</span><span class=\"hljs-params\">(<span class=\"hljs-type\">int</span> a, <span class=\"hljs-type\">int</span> b)</span> </span>{\n    <span class=\"hljs-keyword\">return</span> a + b;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"8,29"}}],"payload":{"tag":"h2","lines":"7,8"}},{"content":"EX: Print Binary of a Number","children":[{"content":"<pre data-lines=\"30,49\"><code data-lines=\"30,49\">Function to Print <span class=\"hljs-number\">8</span>-bit Binary\n\n<span class=\"hljs-meta\">#<span class=\"hljs-keyword\">include</span> <span class=\"hljs-string\">&lt;stdio.h&gt;</span></span>\n\n<span class=\"hljs-function\"><span class=\"hljs-type\">void</span> <span class=\"hljs-title\">printBinary</span><span class=\"hljs-params\">(<span class=\"hljs-type\">int</span> num)</span> </span>{\n    <span class=\"hljs-keyword\">for</span> (<span class=\"hljs-type\">int</span> i = <span class=\"hljs-number\">7</span>; i &gt;= <span class=\"hljs-number\">0</span>; i--) {\n        <span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">&quot;%d&quot;</span>, (num &gt;&gt; i) &amp; <span class=\"hljs-number\">1</span>);\n    }\n    <span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">&quot;\\n&quot;</span>);\n}\n\n<span class=\"hljs-function\"><span class=\"hljs-type\">int</span> <span class=\"hljs-title\">main</span><span class=\"hljs-params\">()</span> </span>{\n    <span class=\"hljs-type\">int</span> n = <span class=\"hljs-number\">13</span>;\n    <span class=\"hljs-built_in\">printBinary</span>(n); <span class=\"hljs-comment\">// Output: 00001101</span>\n    <span class=\"hljs-keyword\">return</span> <span class=\"hljs-number\">0</span>;\n}\n\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"30,49"}}],"payload":{"tag":"h2","lines":"29,30"}},{"content":"Topic 2: Taylor Series &#x2013; <code>sin(x)</code>","children":[{"content":"&#x1f539; Approximate <code>sin(x)</code> in C","children":[{"content":"<pre data-lines=\"62,82\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;math.h&gt;\n\nint main() {\n    double degrees = 30.0;\n    double x = degrees * M_PI / 180.0;  // Convert to radians\n    int terms = 10;\n    double sum = x;\n    double term = x;\n\n    for (int n = 1; n &lt; terms; n++) {\n        term *= (-1) * x * x / ((2*n)*(2*n + 1));\n        sum += term;\n    }\n\n    printf(&quot;sin(%.2f&#xb0;) &#x2248; %.10f\\n&quot;, degrees, sum);\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"62,82"}}],"payload":{"tag":"h3","lines":"60,61"}}],"payload":{"tag":"h2","lines":"52,53"}},{"content":"EX: Taylor Series &#x2013; <code>ln(1 + x)</code>","children":[{"content":"&#x1f539; Approximate <code>ln(1 + x)</code> in C","children":[{"content":"<pre data-lines=\"93,112\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n#include &lt;math.h&gt;\n\nint main() {\n    double x = 0.5;\n    int terms = 20;\n    double sum = 0.0;\n\n    for (int n = 1; n &lt;= terms; n++) {\n        double term = pow(x, n) / n;\n        if (n % 2 == 0) term = -term;\n        sum += term;\n    }\n\n    printf(&quot;ln(1 + %.2f) &#x2248; %.10f\\n&quot;, x, sum);\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"93,112"}}],"payload":{"tag":"h3","lines":"91,92"}}],"payload":{"tag":"h2","lines":"85,86"}},{"content":"Ex: Taylor Series &#x2013; <code>ln(x)</code> Centered at 1","children":[{"content":"&#x1f539; Approximate <code>ln(x)</code> in C","children":[{"content":"<pre data-lines=\"123,141\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nint main() {\n    float x = 1.5;\n    int n = 10;\n    float t = x - 1.0;\n    float sum_ln = t;\n\n    for (int k = 0; k &lt; n; k++) {\n        t = t * (-1) * (x - 1.0) * (k + 1) / (k + 2);\n        sum_ln += t;\n    }\n\n    printf(&quot;ln(%.2f) &#x2248; %f\\n&quot;, x, sum_ln);\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"123,141"}}],"payload":{"tag":"h3","lines":"121,122"}}],"payload":{"tag":"h2","lines":"115,116"}},{"content":"Notes","children":[{"content":"Use radians for trigonometric functions.","children":[],"payload":{"tag":"li","lines":"145,146"}},{"content":"Always validate input domain (e.g., x &gt; &#x2212;1 for ln(1 + x)).","children":[],"payload":{"tag":"li","lines":"146,147"}},{"content":"Use <code>double</code> or <code>float</code> for decimal precision.","children":[],"payload":{"tag":"li","lines":"147,148"}},{"content":"Ratio = t{k} / t{k-1}","children":[],"payload":{"tag":"li","lines":"148,149"}}],"payload":{"tag":"h2","lines":"144,145"}}],"payload":{"tag":"h1","lines":"0,1"}},{})</script>
+</body>
+</html>
