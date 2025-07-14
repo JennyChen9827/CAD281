@@ -1,0 +1,57 @@
+<p><strong>🔁 Note:</strong> The Ratio Test uses <strong>t<sub>k</sub> / t<sub>k−1</sub></strong> (current term divided by previous term).</p>
+
+<table border="1" cellpadding="10" cellspacing="0" style="border-collapse: collapse; font-family: sans-serif; text-align: left; width: 100%;">
+  <thead style="background-color: #e3f2fd;">
+    <tr>
+      <th style="background-color:#c8e6c9;">Function</th>
+      <th style="background-color:#fff9c4;">Taylor Series Formula</th>
+      <th style="background-color:#ffe0b2;">Convergence Interval</th>
+      <th style="background-color:#d1c4e9;">Constraints</th>
+      <th style="background-color:#f8bbd0;">Ratio Test: tₖ / tₖ₋₁</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>e<sup>x</sup></code></td>
+      <td><code>∑ (xⁿ / n!) = 1 + x + x²/2! + x³/3! + ...</code></td>
+      <td>(−∞, ∞)</td>
+      <td>Function must be infinitely differentiable</td>
+      <td><code>x / k</code> → 0 as k→∞ ⇒ converges for all x</td>
+    </tr>
+    <tr>
+      <td><code>sin(x)</code></td>
+      <td><code>∑ (−1)ⁿ x²ⁿ⁺¹ / (2n+1)! = x − x³/3! + x⁵/5! − ...</code></td>
+      <td>(−∞, ∞)</td>
+      <td>Alternating series, all derivatives exist</td>
+      <td><code>− x² / [(2n)(2n+1)]</code> → 0 as n→∞</td>
+    </tr>
+    <tr>
+      <td><code>cos(x)</code></td>
+      <td><code>∑ (−1)ⁿ x²ⁿ / (2n)! = 1 − x²/2! + x⁴/4! − ...</code></td>
+      <td>(−∞, ∞)</td>
+      <td>Alternating, symmetric about x = 0</td>
+      <td><code>− x² / [(2n+1)(2n+2)]</code> → 0 as n→∞</td>
+    </tr>
+    <tr>
+      <td><code>ln(x)</code></td>
+      <td><code>∑ (−1)ⁿ⁺¹ ((x − 1)ⁿ / n) = (x − 1) − (x − 1)²/2 + (x − 1)³/3 − ...</code></td>
+      <td>(0, 2]</td>
+      <td>Valid for 0 &lt; x ≤ 2, centered at x = 1</td>
+      <td><code>− (x − 1)(k + 1) / (k + 2)</code></td>
+    </tr>
+    <tr>
+      <td><code>ln(1 + x)</code></td>
+      <td><code>∑ (−1)ⁿ⁺¹ xⁿ / n = x − x²/2 + x³/3 − x⁴/4 + ...</code></td>
+      <td>(−1, 1]</td>
+      <td>Conditionally converges at x = −1; absolutely if |x| &lt; 1</td>
+      <td><code>− x (k − 1)/k</code> → −x as k→∞</td>
+    </tr>
+    <tr>
+      <td><code>1 / (1 − x)</code></td>
+      <td><code>∑ xⁿ = 1 + x + x² + x³ + ...</code></td>
+      <td>(−1, 1)</td>
+      <td>Geometric series: converges when |x| &lt; 1</td>
+      <td><code>x</code> (converges if |x| &lt; 1)</td>
+    </tr>
+  </tbody>
+</table>
