@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bit Mask Operations Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #444;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #444;
+            color: white;
+        }
+        .set {
+            background-color: #ffcccc;
+        }
+        .reset {
+            background-color: #ccffcc;
+        }
+        .flip {
+            background-color: #ccccff;
+        }
+        .display {
+            background-color: #ffffcc;
+        }
+        .input {
+            background-color: #e0ccff;
+        }
+        code {
+            font-family: monospace;
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>🌈 Bit Mask Operations in C</h2>
+
+<table>
+    <tr>
+        <th>Command</th>
+        <th>Description</th>
+        <th>Mask Creation</th>
+        <th>Operation</th>
+        <th>Example Code</th>
+    </tr>
+    <tr class="set">
+        <td><strong>S</strong></td>
+        <td>Set n bits at position p to 1</td>
+        <td><code>((1 &lt;&lt; n) - 1) &lt;&lt; p</code></td>
+        <td><code>var |= mask;</code></td>
+        <td><code>var |= ((1 &lt;&lt; n) - 1) &lt;&lt; p;</code></td>
+    </tr>
+    <tr class="reset">
+        <td><strong>R</strong></td>
+        <td>Reset n bits at position p to 0</td>
+        <td><code>((1 &lt;&lt; n) - 1) &lt;&lt; p</code></td>
+        <td><code>var &amp;= ~mask;</code></td>
+        <td><code>var &amp;= ~(((1 &lt;&lt; n) - 1) &lt;&lt; p);</code></td>
+    </tr>
+    <tr class="flip">
+        <td><strong>F</strong></td>
+        <td>Flip (invert) n bits at position p</td>
+        <td><code>((1 &lt;&lt; n) - 1) &lt;&lt; p</code></td>
+        <td><code>var ^= mask;</code></td>
+        <td><code>var ^= ((1 &lt;&lt; n) - 1) &lt;&lt; p;</code></td>
+    </tr>
+    <tr class="display">
+        <td><strong>D</strong></td>
+        <td>Display current value</td>
+        <td>—</td>
+        <td><code>printf("0x%X\\n", var);</code></td>
+        <td><code>printf("Current value: 0x%X\\n", var);</code></td>
+    </tr>
+    <tr class="input">
+        <td><strong>I</strong></td>
+        <td>Input new hexadecimal value</td>
+        <td>—</td>
+        <td><code>scanf("%x", &var);</code></td>
+        <td><code>scanf("%x", &var);</code></td>
+    </tr>
+</table>
+
+</body>
+</html>
