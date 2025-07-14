@@ -1,0 +1,84 @@
+<html><head>
+<style type="text/css">
+#T_c7d94 th {
+  background-color: #4682b4;
+  color: white;
+  padding: 6px;
+}
+#T_c7d94_row0_col0, #T_c7d94_row0_col1, #T_c7d94_row0_col2, #T_c7d94_row1_col0, #T_c7d94_row1_col1, #T_c7d94_row1_col2, #T_c7d94_row2_col0, #T_c7d94_row2_col1, #T_c7d94_row2_col2, #T_c7d94_row3_col0, #T_c7d94_row3_col1, #T_c7d94_row3_col2, #T_c7d94_row4_col0, #T_c7d94_row4_col1, #T_c7d94_row4_col2, #T_c7d94_row5_col0, #T_c7d94_row5_col1, #T_c7d94_row5_col2, #T_c7d94_row6_col0, #T_c7d94_row6_col1, #T_c7d94_row6_col2, #T_c7d94_row7_col0, #T_c7d94_row7_col1, #T_c7d94_row7_col2, #T_c7d94_row8_col0, #T_c7d94_row8_col1, #T_c7d94_row8_col2, #T_c7d94_row9_col0, #T_c7d94_row9_col1, #T_c7d94_row9_col2 {
+  background-color: #f0f8ff;
+  color: #000080;
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+  padding: 6px;
+  text-align: left;
+  white-space: normal;
+  word-wrap: break-word;
+}
+</style>
+</head>
+<body>
+<table id="T_c7d94" border="1" style="border-collapse:collapse; width:100%;">
+  <thead>
+    <tr>
+      <th id="T_c7d94_level0_col0" class="col_heading level0 col0" >Topic</th>
+      <th id="T_c7d94_level0_col1" class="col_heading level0 col1" >Key Logic</th>
+      <th id="T_c7d94_level0_col2" class="col_heading level0 col2" >Example Code</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="T_c7d94_row0_col0" class="data row0 col0" >Check Power of 2</td>
+      <td id="T_c7d94_row0_col1" class="data row0 col1" >x & (x - 1) == 0</td>
+      <td id="T_c7d94_row0_col2" class="data row0 col2" >if ((x & (x - 1)) == 0 && x != 0) printf("Power of 2");</td>
+    </tr>
+    <tr>
+      <td id="T_c7d94_row1_col0" class="data row1 col0" >Swap Two Numbers</td>
+      <td id="T_c7d94_row1_col1" class="data row1 col1" >a ^= b; b ^= a; a ^= b;</td>
+      <td id="T_c7d94_row1_col2" class="data row1 col2" >int a=3, b=5; a^=b; b^=a; a^=b;</td>
+    </tr>
+    <tr>
+      <td id="T_c7d94_row2_col0" class="data row2 col0" >Set Bit at Position p</td>
+      <td id="T_c7d94_row2_col1" class="data row2 col1" >x | (1 << p)</td>
+      <td id="T_c7d94_row2_col2" class="data row2 col2" >x = x | (1 << p);</td>
+    </tr>
+    <tr>
+      <td id="T_c7d94_row3_col0" class="data row3 col0" >Clear Bit at Position p</td>
+      <td id="T_c7d94_row3_col1" class="data row3 col1" >x & ~(1 << p)</td>
+      <td id="T_c7d94_row3_col2" class="data row3 col2" >x = x & ~(1 << p);</td>
+    </tr>
+    <tr>
+      <td id="T_c7d94_row4_col0" class="data row4 col0">Move n Bits from p to the LSB</td>
+      <td id="T_c7d94_row4_col1" class="data row4 col1">mask = ((1 << n) - 1) << (p+1-n)</td>
+      <td id="T_c7d94_row4_col2" class="data row4 col2" >x = (x & mask) >> (p+1-n);</td>
+    </tr>
+    <tr>
+      <td id="T_c7d94_row5_col0" class="data row5 col0" >Set Devices in Bits</td>
+      <td id="T_c7d94_row5_col1" class="data row5 col1" >device |= (1 << bit)</td>
+      <td id="T_c7d94_row5_col2" class="data row5 col2" >device = 0; device |= (1 << 0); device |= (1 << 3);</td>
+    </tr>
+    <tr>
+      <td id="T_c7d94_row6_col0" class="data row6 col0" >Binary to Decimal</td>
+      <td id="T_c7d94_row6_col1" class="data row6 col1" >Loop & bit shift</td>
+      <td id="T_c7d94_row6_col2" class="data row6 col2" >while(bin){ dec += (bin&1)*base; bin>>=1; base*=2; }</td>
+    </tr>
+    <tr>
+      <td id="T_c7d94_row7_col0" class="data row7 col0" >Decimal to Binary</td>
+      <td id="T_c7d94_row7_col1" class="data row7 col1" >Loop & right shift</td>
+      <td id="T_c7d94_row7_col2" class="data row7 col2" >for(i=7;i>=0;i--) printf("%d", (x>>i)&1);</td>
+    </tr>
+    <tr>
+      <td id="T_c7d94_row8_col0" class="data row8 col0" >Check Palindrome</td>
+      <td id="T_c7d94_row8_col1" class="data row8 col1" >Compare original and reversed</td>
+      <td id="T_c7d94_row8_col2" class="data row8 col2" >int rev=0,n=orig; while(n){ rev=rev*10+n%10; n/=10; }</td>
+    </tr>
+    <tr>
+      <td id="T_c7d94_row9_col0" class="data row9 col0" >Taylor Series: sin(x) -> degree convert to radian</td>
+      <td id="T_c7d94_row9_col1" class="data row9 col1" >term = term * (-1)*x*x/((2*k)*(2*k+1));</td>
+      <td id="T_c7d94_row9_col2" class="data row9 col2" >term = x; sum = x; for(k=1; k <= terms;k++){term = term * (-1) * x * x / (( 2 * k) * ( 2 * k + 1 ) );}</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
