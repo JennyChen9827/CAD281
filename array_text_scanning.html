@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"Arrays, Strings, and File Scanning in C","children":[{"content":"Arrays in C","children":[{"content":"Definition","children":[{"content":"<pre data-lines=\"6,21\"><code data-lines=\"6,21\">An<span class=\"hljs-built_in\"> array </span>is a collection of values of the same data type.\n\n<span class=\"hljs-comment\">#include &lt;stdio.h&gt;</span>\n<span class=\"hljs-built_in\">\nint </span>main() {\n   <span class=\"hljs-built_in\"> int </span>numbers[5] = {1, 2, 3, 4, 5};\n\n    for(int i = 0; i &lt; 5; i++) {\n        printf(<span class=\"hljs-string\">&quot;%d &quot;</span>, numbers[i]);\n    }\n\n   <span class=\"hljs-built_in\"> return </span>0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"6,21"}}],"payload":{"tag":"h3","lines":"5,6"}},{"content":"&#x2757; Common Errors","children":[{"content":"Accessing out of bounds: <code>numbers[5]</code> is invalid (only <code>0</code> to <code>4</code> are valid).","children":[],"payload":{"tag":"li","lines":"23,24"}},{"content":"Forgetting to initialize values: uninitialized arrays may contain garbage data.","children":[],"payload":{"tag":"li","lines":"24,25"}},{"content":"Using incorrect loop bounds (off-by-one errors).","children":[],"payload":{"tag":"li","lines":"25,27"}}],"payload":{"tag":"h3","lines":"22,23"}}],"payload":{"tag":"h2","lines":"3,4"}},{"content":"Strings in C","children":[{"content":"Definition","children":[{"content":"<pre data-lines=\"32,55\"><code data-lines=\"32,55\">A string <span class=\"hljs-keyword\">is</span> a <span class=\"hljs-type\">character</span> <span class=\"hljs-keyword\">array</span> ending <span class=\"hljs-keyword\">with</span> a <span class=\"hljs-keyword\">null</span> <span class=\"hljs-type\">character</span> `\\<span class=\"hljs-number\">0</span>`.\n\n<span class=\"hljs-meta\">#include &lt;stdio.h&gt;</span>\n<span class=\"hljs-meta\">#include &lt;string.h&gt;</span>\n\n<span class=\"hljs-type\">int</span> main() {\n    <span class=\"hljs-type\">char</span> <span class=\"hljs-type\">name</span>[<span class=\"hljs-number\">10</span>] = &quot;ESE124&quot;;\n\n    printf(&quot;Name: %s\\n&quot;, <span class=\"hljs-type\">name</span>);\n    printf(&quot;Length: %lu\\n&quot;, strlen(<span class=\"hljs-type\">name</span>));\n\n    <span class=\"hljs-type\">char</span> <span class=\"hljs-keyword\">copy</span>[<span class=\"hljs-number\">10</span>];\n    strcpy(<span class=\"hljs-keyword\">copy</span>, <span class=\"hljs-type\">name</span>);\n    printf(&quot;Copied: %s\\n&quot;, <span class=\"hljs-keyword\">copy</span>);\n\n    <span class=\"hljs-keyword\">if</span> (strcmp(<span class=\"hljs-type\">name</span>, <span class=\"hljs-keyword\">copy</span>) == <span class=\"hljs-number\">0</span>) {\n        printf(&quot;Strings are the same.\\n&quot;);\n    }\n\n    <span class=\"hljs-keyword\">return</span> <span class=\"hljs-number\">0</span>;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"32,55"}}],"payload":{"tag":"h3","lines":"31,32"}},{"content":"&#x2757; Common Errors","children":[{"content":"Not leaving space for <code>\\0</code>: <code>char name[6] = &quot;ESE124&quot;;</code> is invalid.","children":[],"payload":{"tag":"li","lines":"57,58"}},{"content":"Forgetting <code>#include &lt;string.h&gt;</code> for <code>strcpy</code>, <code>strcmp</code>, etc.","children":[],"payload":{"tag":"li","lines":"58,59"}},{"content":"Using <code>==</code> to compare strings instead of <code>strcmp</code>.","children":[],"payload":{"tag":"li","lines":"59,61"}}],"payload":{"tag":"h3","lines":"56,57"}}],"payload":{"tag":"h2","lines":"29,30"}},{"content":"&#x1f4cc; File Scanning (Reading from Text File)","children":[{"content":"Read Words from File","children":[{"content":"<pre data-lines=\"67,87\"><code class=\"language-c\">#include &lt;stdio.h&gt;\n\nint main() {\n    FILE *file = fopen(&quot;sample.txt&quot;, &quot;r&quot;);\n    char word[100];\n\n    if (file == NULL) {\n        printf(&quot;Failed to open file.\\n&quot;);\n        return 1;\n    }\n\n    while (fscanf(file, &quot;%s&quot;, word) != EOF) {\n        printf(&quot;Word: %s\\n&quot;, word);\n    }\n\n    fclose(file);\n    return 0;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"67,87"}}],"payload":{"tag":"h3","lines":"65,66"}},{"content":"Sample <code>sample.txt</code> Content","children":[{"content":"<pre data-lines=\"89,92\"><code data-lines=\"89,92\">Hello ESE124 <span class=\"hljs-keyword\">from</span> <span class=\"hljs-built_in\">file</span>!\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"89,92"}}],"payload":{"tag":"h3","lines":"88,89"}},{"content":"&#x2757; Common Errors","children":[{"content":"Not checking if <code>file == NULL</code> before reading.","children":[],"payload":{"tag":"li","lines":"94,95"}},{"content":"Using a buffer that is too small (can lead to overflow).","children":[],"payload":{"tag":"li","lines":"95,96"}},{"content":"Forgetting to close the file with <code>fclose(file);</code>.","children":[],"payload":{"tag":"li","lines":"96,98"}}],"payload":{"tag":"h3","lines":"93,94"}}],"payload":{"tag":"h2","lines":"63,64"}},{"content":"Summary Table","children":[{"content":"<table data-lines=\"102,109\">\n<thead data-lines=\"102,103\">\n<tr data-lines=\"102,103\">\n<th>Concept</th>\n<th>Type</th>\n<th>Example Code Snippet</th>\n</tr>\n</thead>\n<tbody data-lines=\"104,109\">\n<tr data-lines=\"104,105\">\n<td>Array</td>\n<td>int[]</td>\n<td><code>int a[3] = {1,2,3};</code></td>\n</tr>\n<tr data-lines=\"105,106\">\n<td>String</td>\n<td>char[]</td>\n<td><code>char name[] = &quot;Tom&quot;;</code></td>\n</tr>\n<tr data-lines=\"106,107\">\n<td>Copy String</td>\n<td>function</td>\n<td><code>strcpy(dest, src);</code></td>\n</tr>\n<tr data-lines=\"107,108\">\n<td>Compare</td>\n<td>function</td>\n<td><code>strcmp(s1, s2);</code></td>\n</tr>\n<tr data-lines=\"108,109\">\n<td>Read File</td>\n<td>FILE*</td>\n<td><code>fscanf(file, &quot;%s&quot;, word);</code></td>\n</tr>\n</tbody>\n</table>","children":[],"payload":{"tag":"table","lines":"102,109"}}],"payload":{"tag":"h2","lines":"100,101"}}],"payload":{"tag":"h1","lines":"1,2"}},{})</script>
+</body>
+</html>
