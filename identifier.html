@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Identifier Extractor Explanation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f8fb;
+      padding: 20px;
+    }
+    h2 {
+      color: #1a73e8;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #ffffff;
+    }
+    th, td {
+      border: 1px solid #d0d7de;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #007acc;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f0f0f0;
+    }
+    code {
+      background-color: #eef6ff;
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+    .green {
+      color: #2e7d32;
+      font-weight: bold;
+    }
+    .red {
+      color: #c62828;
+      font-weight: bold;
+    }
+    .blue {
+      color: #1565c0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Identifier Extractor in C – Explained Step by Step</h2>
+
+<table>
+  <tr>
+    <th>Step</th>
+    <th>Code Snippet</th>
+    <th>Explanation</th>
+  </tr>
+  <tr>
+    <td>1. Check Valid Identifier Start</td>
+    <td><code>is_letter_or_underscore(c)</code></td>
+    <td class="green">Returns true if <code>c</code> is a letter (A–Z, a–z) or underscore (_)</td>
+  </tr>
+  <tr>
+    <td>2. Check Valid Identifier Characters</td>
+    <td><code>is_letter_digit_or_underscore(c)</code></td>
+    <td class="green">Returns true if <code>c</code> is a letter, digit (0–9), or underscore (_)</td>
+  </tr>
+  <tr>
+    <td>3. Open File</td>
+    <td><code>fopen("data.txt", "r")</code></td>
+    <td class="blue">Opens file for reading; exits with message if not found</td>
+  </tr>
+  <tr>
+    <td>4. Read One Character</td>
+    <td><code>c = fgetc(fp)</code></td>
+    <td>Reads one character at a time from the file</td>
+  </tr>
+  <tr>
+    <td>5. Skip Invalid Start</td>
+    <td><code>if (!is_letter_or_underscore(c))</code></td>
+    <td class="red">If not a valid start, skip the whole word using a loop</td>
+  </tr>
+  <tr>
+    <td>6. Start Valid Identifier</td>
+    <td><code>word[idx++] = c</code></td>
+    <td class="green">If it's a valid start, begin saving it into <code>word[]</code></td>
+  </tr>
+  <tr>
+    <td>7. Continue Saving Identifier</td>
+    <td><code>while (...) { word[idx++] = c; }</code></td>
+    <td class="blue">Continue saving characters as long as they are valid (letters/digits/_)</td>
+  </tr>
+  <tr>
+    <td>8. End of Identifier</td>
+    <td><code>word[idx] = '\0'</code></td>
+    <td>Add null terminator so it's a proper string</td>
+  </tr>
+  <tr>
+    <td>9. Print Identifier</td>
+    <td><code>printf("Identifier: %s\n", word)</code></td>
+    <td class="green">Print the valid identifier found in the file</td>
+  </tr>
+  <tr>
+    <td>10. Reset for Next Word</td>
+    <td><code>idx = 0</code></td>
+    <td class="blue">Reset the index to collect the next word</td>
+  </tr>
+</table>
+
+<h3>✅ Example:</h3>
+<pre>
+Input file:  
+@hello 123 _start validName 9test
+
+Output:  
+Identifier:  _start  
+Identifier: validName
+</pre>
+
+</body>
+</html>
