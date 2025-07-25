@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@11.11.1/styles/default.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>(r => {
+              setTimeout(r);
+            })(function renderToolbar() {
+  const {
+    markmap,
+    mm
+  } = window;
+  const {
+    el
+  } = markmap.Toolbar.create(mm);
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"C Pointers and Arrays","children":[{"content":"1. What is a Pointer?","children":[{"content":"<pre data-lines=\"8,15\"><code data-lines=\"8,15\"><span class=\"hljs-comment\">//A pointer stores the memory address of another variable.</span>\n\n<span class=\"hljs-type\">int</span> x = <span class=\"hljs-number\">10</span>;\n<span class=\"hljs-type\">int</span> *p = &amp;x;\n<span class=\"hljs-built_in\">printf</span>(<span class=\"hljs-string\">&quot;%d&quot;</span>, *p);  <span class=\"hljs-comment\">// Output: 10</span>\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"8,15"}},{"content":"<pre data-lines=\"17,21\"><code class=\"language-c\">int *p;\n*p = 5;  // &#x274c; Undefined behavior &#x2013; p is not initialized\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"17,21"}}],"payload":{"tag":"h2","lines":"7,8"}},{"content":"2. Array vs Pointer (Non-Function Context)","children":[{"content":"Array","children":[{"content":"<pre data-lines=\"28,31\"><code class=\"language-c\">int arr[3] = {1, 2, 3};  // Stored in stack\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"28,31"}}],"payload":{"tag":"h3","lines":"26,27"}},{"content":"Pointer","children":[{"content":"<pre data-lines=\"34,38\"><code class=\"language-c\">int *p = arr;           // Points to arr[0]\nprintf(&quot;%d&quot;, *(p + 1)); // Output: 2\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"34,38"}}],"payload":{"tag":"h3","lines":"32,33"}}],"payload":{"tag":"h2","lines":"24,25"}},{"content":"3. Array vs Pointer in Functions","children":[{"content":"Arrays decay to pointers when passed to a function","children":[{"content":"<pre data-lines=\"45,52\"><code class=\"language-c\">void printArr(int arr[], int size) {\n    for (int i = 0; i &lt; size; i++) {\n        printf(&quot;%d &quot;, arr[i]);\n    }\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"45,52"}}],"payload":{"tag":"h3","lines":"43,44"}},{"content":"Using pointer as parameter (same as above)","children":[{"content":"<pre data-lines=\"55,58\"><code class=\"language-c\">void printArr(int *arr, int size) { ... }\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"55,58"}}],"payload":{"tag":"h3","lines":"53,54"}}],"payload":{"tag":"h2","lines":"41,42"}},{"content":"4. Returning Arrays &#x2013; Stack vs Heap","children":[{"content":"&#x274c; Wrong: Return local array (stack memory is destroyed)","children":[{"content":"<pre data-lines=\"65,71\"><code class=\"language-c\">int* badFunc() {\n    int arr[5] = {1, 2, 3, 4, 5};\n    return arr;  // &#x274c; DO NOT DO THIS\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"65,71"}}],"payload":{"tag":"h3","lines":"63,64"}},{"content":"&#x2705; Correct: Return pointer to heap-allocated memory","children":[{"content":"<pre data-lines=\"74,81\"><code class=\"language-c\">int* goodFunc() {\n    int *arr = malloc(5 * sizeof(int));\n    arr[0] = 10;\n    return arr;\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"74,81"}},{"content":"<pre data-lines=\"83,87\"><code class=\"language-c\">int* arr = malloc(5 * sizeof(int));\narr[5] = 100;  // &#x274c; Out-of-bounds access\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"83,87"}}],"payload":{"tag":"h3","lines":"72,73"}}],"payload":{"tag":"h2","lines":"61,62"}},{"content":"5. Dynamic Memory Allocation","children":[{"content":"Allocate memory using malloc","children":[{"content":"<pre data-lines=\"94,101\"><code class=\"language-c\">int *data = malloc(5 * sizeof(int));\nif (data == NULL) {\n    // handle error\n}\nfree(data);\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"94,101"}}],"payload":{"tag":"h3","lines":"92,93"}}],"payload":{"tag":"h2","lines":"90,91"}},{"content":"6. Function Pointers","children":[{"content":"<pre data-lines=\"112,122\"><code class=\"language-c\">int add(int a, int b) {\n    return a + b;\n}\n\nint main() {\n    int (*fptr)(int, int) = add;\n    printf(&quot;%d&quot;, fptr(3, 4));  // Output: 7\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"112,122"}}],"payload":{"tag":"h2","lines":"108,109"}},{"content":"7. Array of Function Pointers","children":[{"content":"<pre data-lines=\"138,149\"><code class=\"language-c\">int add(int x, int y) { return x + y; }\nint sub(int x, int y) { return x - y; }\n\nint (*ops[2])(int, int) = { add, sub };\n\nint main() {\n    printf(&quot;%d&quot;, ops[0](5, 2));  // 7\n    printf(&quot;%d&quot;, ops[1](5, 2));  // 3\n}\n</code></pre>","children":[],"payload":{"tag":"pre","lines":"138,149"}}],"payload":{"tag":"h2","lines":"136,137"}},{"content":"Summary","children":[{"content":"Use <code>*</code> to declare pointers and access values.","children":[],"payload":{"tag":"li","lines":"154,155"}},{"content":"Arrays decay to pointers in functions.","children":[],"payload":{"tag":"li","lines":"155,156"}},{"content":"Don&apos;t return local arrays.","children":[],"payload":{"tag":"li","lines":"156,157"}},{"content":"Use <code>malloc</code> for dynamic memory and <code>free</code> to clean up.","children":[],"payload":{"tag":"li","lines":"157,158"}},{"content":"Function pointers give flexibility to call functions dynamically.","children":[],"payload":{"tag":"li","lines":"158,159"}}],"payload":{"tag":"h2","lines":"152,153"}}],"payload":{"tag":"h1","lines":"1,2"}},{})</script>
+</body>
+</html>
