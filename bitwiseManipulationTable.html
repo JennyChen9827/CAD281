@@ -46,7 +46,7 @@
 </head>
 <body>
 
-<h2>🌈 Bit Mask Operations in C</h2>
+<h2>Bit Mask Operations in C</h2>
 
 <table>
     <tr>
@@ -59,23 +59,23 @@
     <tr class="set">
         <td><strong>S</strong></td>
         <td>Set n bits at position p to 1</td>
-        <td><code>((1 &lt;&lt; n) - 1) &lt;&lt; p</code></td>
+        <td><code>((1 &lt;&lt; n) - 1) &lt;&lt; (p + 1 - n)</code></td>
         <td><code>var |= mask;</code></td>
-        <td><code>var |= ((1 &lt;&lt; n) - 1) &lt;&lt; p;</code></td>
+        <td><code>var |= ((1 &lt;&lt; n) - 1) &lt;&lt; (p + 1 - n);</code></td>
     </tr>
     <tr class="reset">
         <td><strong>R</strong></td>
         <td>Reset n bits at position p to 0</td>
-        <td><code>((1 &lt;&lt; n) - 1) &lt;&lt; p</code></td>
+        <td><code>((1 &lt;&lt; n) - 1) &lt;&lt; (p + 1 - n)</code></td>
         <td><code>var &amp;= ~mask;</code></td>
-        <td><code>var &amp;= ~(((1 &lt;&lt; n) - 1) &lt;&lt; p);</code></td>
+        <td><code>var &amp;= ~(((1 &lt;&lt; n) - 1) &lt;&lt; (p + 1 - n));</code></td>
     </tr>
     <tr class="flip">
         <td><strong>F</strong></td>
         <td>Flip (invert) n bits at position p</td>
-        <td><code>((1 &lt;&lt; n) - 1) &lt;&lt; p</code></td>
+        <td><code>((1 &lt;&lt; n) - 1) &lt;&lt; (p + 1 - n)</code></td>
         <td><code>var ^= mask;</code></td>
-        <td><code>var ^= ((1 &lt;&lt; n) - 1) &lt;&lt; p;</code></td>
+        <td><code>var ^= ((1 &lt;&lt; n) - 1) &lt;&lt; (p + 1 - n);</code></td>
     </tr>
     <tr class="display">
         <td><strong>D</strong></td>
